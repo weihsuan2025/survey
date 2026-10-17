@@ -24,18 +24,19 @@
         }
 
         body {
+            font-size: calc(1rem + 5pt);
             background-color: #ffffff; color: #111111;
             display: flex; justify-content: center; align-items: flex-start;
             min-height: 100vh; padding: 24px 15px;
         }
 
         /* 預設（問卷頁面）：白底、無手機框 */
-        .device-wrapper { width: 100%; max-width: 560px; position: relative; }
+        .device-wrapper { width: 100%; max-width: 620px; position: relative; }
         .screen { width: 100%; position: relative; background: #ffffff; }
 
         /* 手機框：只在「前情提要」「情境故事畫面」出現（由 JS 切換 .phone-mode） */
         .device-wrapper.phone-mode {
-            max-width: 410px; height: 830px;
+            max-width: 480px; height: 940px;
             background: #18181b; border-radius: 48px; padding: 12px;
             box-shadow: 0 25px 60px rgba(0,0,0,0.35), inset 0 0 2px rgba(255,255,255,0.2);
             animation: phoneIn 0.35s ease-out;
@@ -57,7 +58,7 @@
         .status-bar {
             height: 44px; padding: 0 24px; display: none;
             justify-content: space-between; align-items: center;
-            font-size: 0.85rem; font-weight: 600; color: #fff;
+            font-size: calc(0.85rem + 5pt); font-weight: 600; color: #fff;
             z-index: 100; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px);
         }
 
@@ -88,12 +89,12 @@
 
         .notif-icon {
             width: 38px; height: 38px; border-radius: 10px; background: #222;
-            display: flex; justify-content: center; align-items: center; font-size: 1.2rem; flex-shrink: 0;
+            display: flex; justify-content: center; align-items: center; font-size: calc(1.2rem + 5pt); flex-shrink: 0;
         }
 
         .notif-body { flex: 1; overflow: hidden; }
-        .notif-title { font-size: 0.82rem; font-weight: 700; color: #fff; display: flex; justify-content: space-between; }
-        .notif-text { font-size: 0.8rem; color: #ddd; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .notif-title { font-size: calc(0.82rem + 5pt); font-weight: 700; color: #fff; display: flex; justify-content: space-between; }
+        .notif-text { font-size: calc(0.8rem + 5pt); color: #ddd; margin-top: 2px; white-space: normal; line-height: 1.35; }
 
         .main-content { padding: 8px 0 48px; }
         .main-content::-webkit-scrollbar { display: none; }
@@ -103,7 +104,7 @@
             border-bottom: 1px solid var(--card-border); margin-bottom: 14px;
         }
 
-        .app-logo { font-weight: 800; font-size: 1.25rem; letter-spacing: -0.5px; }
+        .app-logo { font-weight: 800; font-size: calc(1.25rem + 5pt); letter-spacing: -0.5px; }
 
         .card {
             background-color: var(--card-bg); border-radius: 20px; padding: 16px; margin-bottom: 16px;
@@ -117,22 +118,22 @@
 
         .user-header { display: flex; align-items: center; margin-bottom: 12px; }
         .avatar { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; margin-right: 12px; border: 1px solid #333; }
-        .user-meta .name { font-size: 0.92rem; font-weight: 700; }
-        .user-meta .handle { font-size: 0.8rem; color: var(--text-secondary); }
+        .user-meta .name { font-size: calc(0.92rem + 5pt); font-weight: 700; }
+        .user-meta .handle { font-size: calc(0.8rem + 5pt); color: var(--text-secondary); }
 
-        .post-body { font-size: 0.92rem; line-height: 1.45; color: #ececec; margin-bottom: 12px; }
+        .post-body { font-size: calc(0.92rem + 5pt); line-height: 1.45; color: #ececec; margin-bottom: 12px; }
 
         .media-box { width: 100%; border-radius: 14px; overflow: hidden; margin-bottom: 12px; position: relative; background-color: #000; }
         .media-box img, .media-box video { width: 100%; max-height: 280px; object-fit: cover; display: block; }
 
         .threads-metrics {
-            display: flex; justify-content: space-between; gap: 8px; font-size: 0.78rem; white-space: nowrap;
+            display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 6px 16px; font-size: calc(0.78rem + 5pt);
             color: var(--text-secondary); padding: 8px 0; border-top: 1px solid #222; margin-top: 8px;
         }
 
         .comments-list { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--card-border); }
         .comment-item {
-            font-size: 0.85rem; padding: 10px 12px; background: #1c1c1e; border-radius: 12px; margin-bottom: 8px; line-height: 1.4;
+            font-size: calc(0.85rem + 5pt); padding: 10px 12px; background: #1c1c1e; border-radius: 12px; margin-bottom: 8px; line-height: 1.4;
             animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
@@ -145,7 +146,7 @@
 
         .btn-action {
             width: 100%; padding: 14px; color: white; border: none; border-radius: 14px;
-            font-weight: 700; font-size: 0.92rem; cursor: pointer; margin-top: 12px; transition: all 0.2s;
+            font-weight: 700; font-size: calc(0.92rem + 5pt); cursor: pointer; margin-top: 12px; transition: all 0.2s;
             display: flex; justify-content: center; align-items: center; gap: 8px;
         }
 
@@ -168,18 +169,18 @@
         }
 
         .chat-view { background: #000; border-radius: 16px; padding: 12px; border: 1px solid var(--card-border); }
-        .chat-bubble { max-width: 88%; padding: 10px 14px; border-radius: 18px; font-size: 0.85rem; line-height: 1.4; margin-bottom: 10px; animation: popIn 0.3s ease-out; }
+        .chat-bubble { max-width: 88%; padding: 10px 14px; border-radius: 18px; font-size: calc(0.85rem + 5pt); line-height: 1.4; margin-bottom: 10px; animation: popIn 0.3s ease-out; }
         .chat-bubble.left { background: #262626; color: #fff; border-bottom-left-radius: 4px; }
 
         /* LINE 聊天室 */
         .line-container { background-color: #849baf; height: 100%; display: flex; flex-direction: column; }
-        .line-header { background: #273238; padding: 12px 16px; display: flex; align-items: center; gap: 12px; color: white; font-weight: bold; font-size: 0.95rem; }
+        .line-header { background: #273238; padding: 12px 16px; display: flex; align-items: center; gap: 12px; color: white; font-weight: bold; font-size: calc(0.95rem + 5pt); }
         .line-body { flex: 1; padding: 16px; overflow-y: auto; }
-        .line-bubble { background: #ffffff; color: #000; padding: 10px 14px; border-radius: 16px; border-top-left-radius: 2px; font-size: 0.88rem; line-height: 1.45; max-width: 82%; box-shadow: 0 1px 3px rgba(0,0,0,0.2); margin-bottom: 12px; animation: popIn 0.3s ease-out; }
+        .line-bubble { background: #ffffff; color: #000; padding: 10px 14px; border-radius: 16px; border-top-left-radius: 2px; font-size: calc(0.88rem + 5pt); line-height: 1.45; max-width: 82%; box-shadow: 0 1px 3px rgba(0,0,0,0.2); margin-bottom: 12px; animation: popIn 0.3s ease-out; }
 
         /* 9:16 直式動畫模組 */
         .story-container {
-            width: min(332px, 100%); aspect-ratio: 9 / 16; margin: 0 auto 12px;
+            width: min(400px, 100%); aspect-ratio: 9 / 16; margin: 0 auto 12px;
             background: #000; border-radius: 20px;
             position: relative; overflow: hidden; border: 1px solid #333;
         }
@@ -209,7 +210,7 @@
             position: absolute; bottom: 15px; left: 12px; right: 12px;
             background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.15); border-radius: 14px; padding: 12px;
-            color: #fff; font-size: 0.82rem; line-height: 1.45; text-align: left; z-index: 30;
+            color: #fff; font-size: calc(0.82rem + 5pt); line-height: 1.45; text-align: left; z-index: 30;
         }
 
         /* 9宮格圖片樣式 */
@@ -223,13 +224,13 @@
 
         /* 10x10 情緒網格 */
         .grid-10x10 {
-            display: grid; grid-template-columns: repeat(10, 1fr); gap: 2px; width: 100%; max-width: 360px; height: 360px;
+            display: grid; grid-template-columns: repeat(10, 1fr); gap: 2px; width: 100%; max-width: 560px; height: auto; aspect-ratio: 1 / 1;
             background: #e8ddd3; padding: 3px; border-radius: 8px; margin: 12px 0; border: 1px solid #c9b8a8;
         }
 
         .grid-cell {
             border-radius: 2px; cursor: pointer; display: flex; justify-content: center; align-items: center;
-            font-size: 0.58rem; text-align: center; padding: 1px; color: #111; font-weight: 600; line-height: 1.1; user-select: none; transition: all 0.15s;
+            font-size: calc(0.58rem + 5pt); text-align: center; padding: 0; overflow: hidden; word-break: break-all; color: #111; font-weight: 600; line-height: 1.1; user-select: none; transition: all 0.15s;
         }
 
         .quad-red { background-color: #fbd5d5; }
@@ -243,27 +244,27 @@
 
         /* 表單與量表 */
         .form-group { margin-bottom: 16px; }
-        .form-label { font-size: 0.88rem; font-weight: 600; color: #222; margin-bottom: 8px; display: block; }
+        .form-label { font-size: calc(0.88rem + 5pt); font-weight: 600; color: #222; margin-bottom: 8px; display: block; }
         .form-select, .form-input {
-            width: 100%; padding: 10px; background: #ffffff; border: 1px solid #cdbfb3; color: #111; border-radius: 10px; font-size: 0.88rem;
+            width: 100%; padding: 10px; background: #ffffff; border: 1px solid #cdbfb3; color: #111; border-radius: 10px; font-size: calc(0.88rem + 5pt);
         }
 
         .survey-instruction {
             background: #f6f1ec; padding: 12px 14px; border-radius: 12px; border-left: 4px solid #8a5a3c;
-            font-size: 0.82rem; line-height: 1.5; color: #333; margin-bottom: 16px;
+            font-size: calc(0.82rem + 5pt); line-height: 1.5; color: #333; margin-bottom: 16px;
         }
 
         .survey-item { margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid #e6dcd3; }
-        .survey-q { font-size: 0.86rem; margin-bottom: 10px; line-height: 1.45; color: #111; font-weight: 500; }
+        .survey-q { font-size: calc(0.86rem + 5pt); margin-bottom: 10px; line-height: 1.45; color: #111; font-weight: 500; }
         .scale-options { display: flex; justify-content: space-between; gap: 4px; }
         .scale-btn {
-            flex: 1; padding: 8px 2px; background: #faf6f2; border: 1px solid #d6c9bd; color: #333; border-radius: 8px; font-size: 0.72rem; cursor: pointer; text-align: center; line-height: 1.2;
+            flex: 1; padding: 12px 2px; background: #faf6f2; border: 1px solid #d6c9bd; color: #333; border-radius: 8px; font-size: calc(0.72rem + 5pt); cursor: pointer; text-align: center; line-height: 1.2;
         }
         .scale-btn.active { background: var(--accent-blue); color: white; border-color: var(--accent-blue); font-weight: bold; }
 
         /* 心理資源表格樣式 */
         .resource-table {
-            width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.75rem; text-align: left;
+            width: 100%; border-collapse: collapse; margin: 12px 0; font-size: calc(0.75rem + 5pt); text-align: left;
         }
         .resource-table th, .resource-table td {
             border: 1px solid #d6c9bd; padding: 8px 6px; line-height: 1.35;
@@ -273,7 +274,7 @@
 
         .consent-btn {
             width: 100%; padding: 12px; background: #faf6f2; border: 1px solid #cdbfb3; color: #222;
-            border-radius: 12px; font-size: 0.85rem; cursor: pointer; margin-bottom: 10px; text-align: left; transition: all 0.2s;
+            border-radius: 12px; font-size: calc(0.85rem + 5pt); cursor: pointer; margin-bottom: 10px; text-align: left; transition: all 0.2s;
         }
         .consent-btn:hover, .consent-btn.active {
             background: #0052cc; border-color: #3399ff; color: white; font-weight: bold;
@@ -288,31 +289,36 @@
 
         /* 手指點擊 / 滑動 */
         .touch {
-            position: absolute; width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 50%;
+            position: absolute; width: 44px; height: 44px; margin: -22px 0 0 -22px; border-radius: 50%;
             background: rgba(255,255,255,0.5); border: 2px solid rgba(255,255,255,0.95);
             box-shadow: 0 2px 10px rgba(0,0,0,0.45); opacity: 0; pointer-events: none; z-index: 25;
         }
         .touch::after {
             content: '👆'; position: absolute; left: 50%; top: 55%; transform: translateX(-42%);
-            font-size: 34px; line-height: 1; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+            font-size: 36px; line-height: 1; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
         }
         .ripple {
-            position: absolute; width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 50%;
+            position: absolute; width: 50px; height: 50px; margin: -25px 0 0 -25px; border-radius: 50%;
             border: 3px solid #fff; opacity: 0; pointer-events: none; z-index: 24;
         }
+
+        /* 鏡頭一：原創插畫動態素材（影片與封面會覆蓋底層插畫） */
+        .s1-real { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+        img.s1-real { animation: kenburns 14s ease-in-out infinite alternate; }
+        @keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.08); } }
 
         /* 鏡頭二：限時動態 + 點擊頭像 */
         #scene-2 { background: #000; }
         .s2-shade { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 26%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.55) 100%); }
-        .s2-top { position: absolute; top: 24px; left: 12px; right: 12px; display: flex; align-items: center; gap: 10px; color: #fff; z-index: 5; }
-        .s2-avatar { width: 46px; height: 46px; border-radius: 50%; padding: 2.5px; flex-shrink: 0; background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7); }
+        .s2-top { position: absolute; top: 30px; left: 14px; right: 14px; display: flex; align-items: center; gap: 12px; color: #fff; z-index: 5; }
+        .s2-avwrap { position: relative; width: 56px; height: 56px; flex-shrink: 0; }
+        .s2-avatar { width: 100%; height: 100%; border-radius: 50%; padding: 3px; background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7); }
         .s2-avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2px solid #000; background: #444; display: block; }
-        .s2-meta b { display: block; font-size: 0.82rem; }
-        .s2-meta span { font-size: 0.7rem; opacity: 0.85; }
-        .s2-sticker { position: absolute; left: 14px; top: 56%; z-index: 5; background: rgba(255,255,255,0.93); color: #111; padding: 5px 10px; border-radius: 8px; font-size: 0.78rem; font-weight: 700; transform: rotate(-4deg); }
+        .s2-meta b { display: block; font-size: calc(0.82rem + 5pt); }
+        .s2-meta span { font-size: calc(0.7rem + 5pt); opacity: 0.85; }
+        .s2-sticker { position: absolute; left: 14px; top: 56%; z-index: 5; background: rgba(255,255,255,0.93); color: #111; padding: 6px 12px; border-radius: 8px; font-size: calc(0.78rem + 5pt); font-weight: 700; transform: rotate(-4deg); }
         .story-scene.active .s2-avatar { animation: ringPulse 1s ease-in-out infinite; }
-        .touch.t2 { left: 35px; top: 47px; }
-        .ripple.r2 { left: 35px; top: 47px; }
+        .touch.t2, .ripple.r2 { left: 50%; top: 50%; }
         .story-scene.active .touch.t2 { animation: touchToAvatar 3s ease-in-out 1.2s both; }
         .story-scene.active .ripple.r2 { animation: rippleBurst 3s ease-out 1.2s both; }
         .story-scene.active .ripple.r2.b { animation: rippleBurst 3s ease-out 1.38s both; }
@@ -321,7 +327,7 @@
             50% { transform: scale(1.08); box-shadow: 0 0 0 9px rgba(238,42,123,0); }
         }
         @keyframes touchToAvatar {
-            0% { opacity: 0; transform: translate(150px, 300px) scale(1); }
+            0% { opacity: 0; transform: translate(170px, 340px) scale(1); }
             12% { opacity: 1; }
             55% { opacity: 1; transform: translate(0,0) scale(1); }
             66% { transform: translate(0,0) scale(0.8); }
@@ -334,52 +340,47 @@
             100% { opacity: 0; transform: scale(3.2); }
         }
 
-        /* 鏡頭三：個人主頁 */
+        /* 鏡頭三：個人主頁（九宮格每張照片都不同） */
         #scene-3 { background: #101012; color: #fff; }
-        .s3-col { position: absolute; inset: 24px 0 0 0; display: flex; flex-direction: column; }
-        .s3-bar { display: flex; justify-content: space-between; align-items: center; padding: 6px 14px; font-size: 0.8rem; font-weight: 700; }
-        .s3-head { display: flex; align-items: center; gap: 14px; padding: 4px 14px 0; }
-        .s3-avatar { width: 60px; height: 60px; border-radius: 50%; overflow: hidden; border: 1px solid #444; background: #333; flex-shrink: 0; }
+        .s3-col { position: absolute; inset: 30px 0 0 0; display: flex; flex-direction: column; }
+        .s3-bar { display: flex; justify-content: space-between; align-items: center; padding: 6px 16px; font-size: calc(0.8rem + 5pt); font-weight: 700; }
+        .s3-head { display: flex; align-items: center; gap: 16px; padding: 4px 16px 0; }
+        .s3-avatar { width: 72px; height: 72px; border-radius: 50%; overflow: hidden; border: 1px solid #444; background: #333; flex-shrink: 0; }
         .s3-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .s3-stats { flex: 1; display: flex; justify-content: space-around; text-align: center; font-size: 0.66rem; color: #b5b5b5; }
-        .s3-stats b { display: block; font-size: 0.88rem; color: #fff; }
-        .s3-bio { padding: 8px 14px 8px; font-size: 0.72rem; line-height: 1.4; color: #d0d0d0; }
-        .s3-bio .name { font-weight: 700; font-size: 0.82rem; color: #fff; }
-        .s3-bio .tag { display: inline-block; margin-left: 6px; padding: 0 6px; border-radius: 8px; background: #2a2a30; font-size: 0.66rem; color: #bbb; }
-        .s3-bio .dance { font-weight: 700; font-size: 0.8rem; color: #fff; margin-top: 2px; }
-        .s3-tabs { display: flex; border-top: 1px solid #2a2a2e; border-bottom: 1px solid #2a2a2e; text-align: center; font-size: 0.85rem; }
+        .s3-stats { flex: 1; display: flex; justify-content: space-around; text-align: center; font-size: calc(0.66rem + 5pt); color: #b5b5b5; }
+        .s3-stats b { display: block; font-size: calc(0.88rem + 5pt); color: #fff; }
+        .s3-bio { padding: 10px 16px; font-size: calc(0.72rem + 5pt); line-height: 1.4; color: #d0d0d0; }
+        .s3-bio .name { font-weight: 700; font-size: calc(0.82rem + 5pt); color: #fff; }
+        .s3-bio .tag { display: inline-block; margin-left: 8px; padding: 0 8px; border-radius: 10px; background: #2a2a30; font-size: calc(0.66rem + 5pt); color: #bbb; }
+        .s3-bio .dance { font-weight: 700; font-size: calc(0.8rem + 5pt); color: #fff; margin-top: 2px; }
+        .s3-tabs { display: flex; border-top: 1px solid #2a2a2e; border-bottom: 1px solid #2a2a2e; text-align: center; font-size: calc(0.85rem + 5pt); }
         .s3-tabs span { flex: 1; padding: 4px 0; color: #777; }
         .s3-tabs span.on { color: #fff; border-bottom: 2px solid #fff; }
         .s3-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-        .s3-tile { position: relative; aspect-ratio: 1 / 0.72; background: linear-gradient(135deg, #4a3560, #26335c); overflow: hidden; }
+        .s3-tile { position: relative; aspect-ratio: 1 / 0.8; overflow: hidden;
+            background: linear-gradient(135deg, hsl(var(--h) 45% 38%), hsl(calc(var(--h) + 40) 50% 22%)); }
+        .s3-tile .ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 2rem; opacity: 0.9; }
         .s3-tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-        .s3-notice {
-            margin: 9px 12px 0; padding: 7px 10px; border-radius: 10px; background: rgba(255,255,255,0.08);
-            border: 1px dashed rgba(255,255,255,0.35); font-size: 0.74rem; line-height: 1.35; color: #f0f0f0; text-align: center;
-        }
         .story-scene.active .s3-tile { animation: tileIn 0.45s ease-out both; animation-delay: calc(0.25s + var(--i) * 0.11s); }
-        .story-scene.active .s3-notice { animation: noticeIn 0.6s ease-out 1.8s both, noticePulse 1.6s ease-in-out 2.5s infinite; }
         @keyframes tileIn { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: none; } }
-        @keyframes noticeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-        @keyframes noticePulse { 0%, 100% { border-color: rgba(255,255,255,0.35); } 50% { border-color: rgba(255,133,162,0.95); } }
 
         /* 鏡頭四：往下滑 → 雙擊愛心 */
         #scene-4 { background: #101010; color: #f2f2f2; }
-        .s4-top { position: absolute; top: 0; left: 0; right: 0; height: 56px; z-index: 6; background: #101010; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 14px 8px; font-size: 0.8rem; font-weight: 700; }
-        .s4-scroller { position: absolute; top: 58px; left: 0; right: 0; }
+        .s4-top { position: absolute; top: 0; left: 0; right: 0; height: 66px; z-index: 6; background: #101010; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 16px 8px; font-size: calc(0.8rem + 5pt); font-weight: 700; }
+        .s4-scroller { --ghost: 80px; position: absolute; top: 64px; left: 0; right: 0; }
         .story-scene.active .s4-scroller { animation: scrollUp 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.5s both; }
-        @keyframes scrollUp { from { transform: translateY(0); } to { transform: translateY(-96px); } }
-        .s4-ghost { height: 96px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; opacity: 0.5; }
+        @keyframes scrollUp { from { transform: translateY(0); } to { transform: translateY(calc(-1 * var(--ghost))); } }
+        .s4-ghost { height: var(--ghost); display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; opacity: 0.5; }
         .s4-ghost div { position: relative; background: linear-gradient(135deg, #4a3560, #26335c); overflow: hidden; }
         .s4-ghost img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
         .s4-post { padding: 12px 14px; }
-        .s4-hd { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 0.85rem; font-weight: 700; }
-        .s4-hd img { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; background: #444; }
-        .s4-hd small { font-weight: 400; color: #999; font-size: 0.72rem; }
-        .s4-tx { font-size: 0.82rem; line-height: 1.45; margin-bottom: 8px; }
-        .s4-media { position: relative; width: 100%; aspect-ratio: 1 / 0.82; border-radius: 10px; overflow: hidden; background: linear-gradient(135deg, #4a3560, #26335c); }
+        .s4-hd { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: calc(0.85rem + 5pt); font-weight: 700; }
+        .s4-hd img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; background: #444; }
+        .s4-hd small { font-weight: 400; color: #999; font-size: calc(0.72rem + 5pt); }
+        .s4-tx { font-size: calc(0.82rem + 5pt); line-height: 1.45; margin-bottom: 8px; }
+        .s4-media { position: relative; width: 100%; aspect-ratio: 1 / 0.72; border-radius: 10px; overflow: hidden; background: linear-gradient(135deg, #4a3560, #26335c); }
         .s4-media > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-        .s4-metrics { display: flex; gap: 18px; align-items: center; font-size: 0.82rem; color: #bdbdbd; padding-top: 10px; }
+        .s4-metrics { display: flex; gap: 20px; align-items: center; font-size: calc(0.82rem + 5pt); color: #bdbdbd; padding-top: 10px; }
         .likebox { position: relative; display: inline-block; }
         .likebox .like-on { position: absolute; left: 0; top: 0; white-space: nowrap; color: #ff3040; font-weight: 700; opacity: 0; }
         .story-scene.active .likebox .like-on { animation: likeOn 0.5s ease 3.3s both; }
@@ -387,9 +388,8 @@
         @keyframes likeOn { from { opacity: 0; transform: scale(0.6); } 50% { opacity: 1; transform: scale(1.4); } to { opacity: 1; transform: scale(1); } }
         @keyframes likeOff { to { opacity: 0; } }
 
-        .touch.t4 { left: 50%; top: 50%; }
-        .ripple.r4 { left: 50%; top: 50%; }
-        .touch.sw { left: 215px; top: 430px; }
+        .touch.t4, .ripple.r4 { left: 50%; top: 50%; }
+        .touch.sw { left: 62%; top: 72%; }
         .story-scene.active .touch.sw { animation: swipeUp 1.3s ease-in-out 0.3s both; }
         .story-scene.active .touch.t4 { animation: touchDbl 2s ease-in-out 2s both; }
         .story-scene.active .ripple.r4.a { animation: rippleTap 0.6s ease-out 2.8s both; }
@@ -397,11 +397,11 @@
         @keyframes swipeUp {
             0% { opacity: 0; transform: translateY(50px); }
             20% { opacity: 1; }
-            80% { opacity: 1; transform: translateY(-90px); }
-            100% { opacity: 0; transform: translateY(-110px); }
+            80% { opacity: 1; transform: translateY(-100px); }
+            100% { opacity: 0; transform: translateY(-120px); }
         }
         @keyframes touchDbl {
-            0% { opacity: 0; transform: translate(70px, 80px) scale(1); }
+            0% { opacity: 0; transform: translate(80px, 90px) scale(1); }
             25% { opacity: 1; transform: translate(0,0) scale(1); }
             40% { transform: translate(0,0) scale(0.78); }
             50% { transform: translate(0,0) scale(1); }
@@ -414,7 +414,7 @@
             1% { opacity: 0.9; }
             100% { opacity: 0; transform: scale(2.6); }
         }
-        .bigheart { position: absolute; left: 50%; top: 50%; font-size: 92px; line-height: 1; opacity: 0; z-index: 22; pointer-events: none; filter: drop-shadow(0 4px 14px rgba(255,48,64,0.6)); transform: translate(-50%,-50%) scale(0); }
+        .bigheart { position: absolute; left: 50%; top: 50%; font-size: 100px; line-height: 1; opacity: 0; z-index: 22; pointer-events: none; filter: drop-shadow(0 4px 14px rgba(255,48,64,0.6)); transform: translate(-50%,-50%) scale(0); }
         .story-scene.active .bigheart { animation: bigHeart 1.2s ease-out 3.25s both; }
         @keyframes bigHeart {
             0% { opacity: 0; transform: translate(-50%,-50%) scale(0); }
@@ -429,15 +429,27 @@
         @keyframes heartFloat {
             0% { opacity: 0; transform: translate(0, 0) scale(0.4); }
             12% { opacity: 1; }
-            100% { opacity: 0; transform: translate(var(--x), -140px) scale(1.2); }
+            100% { opacity: 0; transform: translate(var(--x), -150px) scale(1.2); }
         }
 
         /* 視訊側錄影片：9:16 */
-        .video-wrap { width: min(260px, 100%); margin: 0 auto 12px; border-radius: 14px; overflow: hidden; border: 1px solid #333; background: #000; }
-        .video-tag { background: #e50914; color: #fff; font-size: 0.75rem; font-weight: 700; text-align: center; padding: 5px 8px; }
+        .video-wrap { width: min(320px, 100%); margin: 0 auto 12px; border-radius: 14px; overflow: hidden; border: 1px solid #333; background: #000; }
+        .video-tag { background: #e50914; color: #fff; font-size: calc(0.75rem + 5pt); font-weight: 700; text-align: center; padding: 5px 8px; }
         .video-916 { position: relative; width: 100%; aspect-ratio: 9 / 16; background: #000; }
         .video-916 video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 
+        h3 { font-size: calc(1.17rem + 5pt); }
+        @media (max-width: 520px) {
+            body { padding: 8px; }
+            .device-wrapper.phone-mode { padding: 6px; border-radius: 34px; height: calc(100dvh - 16px); min-height: 640px; }
+            .device-wrapper.phone-mode .screen { border-radius: 28px; }
+            .device-wrapper.phone-mode .main-content { padding: 12px; }
+            /* 窄螢幕：把鏡頭內的圖片壓扁一點，避免被下方字幕遮住 */
+            .s3-tile { aspect-ratio: 1 / 0.64; }
+            .s3-avatar { width: 62px; height: 62px; }
+            .s3-bio { padding: 6px 16px; }
+            .s4-media { aspect-ratio: 1 / 0.58; }
+        }
         .hidden { display: none !important; }
     </style>
 </head>
@@ -458,7 +470,7 @@
             <div class="notif-body">
                 <div class="notif-title">
                     <span id="notif-title">Instagram</span>
-                    <span style="font-size:0.7rem; color:#ff85a2;">👇 點擊查看訊息</span>
+                    <span style="font-size:calc(0.7rem + 5pt); color:#ff85a2;">👇 點擊查看訊息</span>
                 </div>
                 <div class="notif-text" id="notif-msg">通知內容...</div>
             </div>
@@ -467,30 +479,30 @@
         <!-- 轉場畫面 -->
         <div class="transition-overlay hidden" id="transition-screen">
             <div style="font-size:3rem; margin-bottom:15px;" id="trans-icon">⏰</div>
-            <div style="font-size:1rem; line-height:1.6; color:#ddd;" id="trans-text">轉場說明文字</div>
+            <div style="font-size:calc(1rem + 5pt); line-height:1.6; color:#ddd;" id="trans-text">轉場說明文字</div>
         </div>
 
         <!-- 頁面 0: 知情同意書 -->
         <div class="main-content" id="view-page0">
             <div style="background:#faf6f2; border-radius:20px; padding:18px; border:1px solid #e3d6ca;">
-                <h3 style="color:#5a3825; font-size:1.05rem; margin-bottom:10px;">親愛的同學，您好：</h3>
-                <p style="font-size:0.82rem; line-height:1.6; color:#222; margin-bottom:10px;">
+                <h3 style="color:#5a3825; font-size:calc(1.05rem + 5pt); margin-bottom:10px;">親愛的同學，您好：</h3>
+                <p style="font-size:calc(0.82rem + 5pt); line-height:1.6; color:#222; margin-bottom:10px;">
                     非常感謝您撥空填寫這份問卷，這是一份關於北部地區高中職生面對網路性騷擾之情緒維度與旁觀者行為傾向之關聯的研究問卷。問卷分為五個部分，預計填寫時間為 5-10 分鐘。每題答案均無對錯或好壞之分，請您依據真實的想法與感覺問答。填寫本問卷時，每一題只能選擇一個答案，請仔細閱讀各部分說明後，認真作答。
                 </p>
-                <p style="font-size:0.82rem; line-height:1.6; color:#222; margin-bottom:10px;">
+                <p style="font-size:calc(0.82rem + 5pt); line-height:1.6; color:#222; margin-bottom:10px;">
                     本問卷採不記名方式作答，問卷結果僅供學術研究之用，您的答題內容我們將謹守保密規定，因此請您安心作答。若填答過程中，有任何的不適，您可以自行決定暫停或停止作答。如填寫完成後有產生心理不適，請您與校內導師、輔導處或信任的大人進行求助。
                 </p>
-                <p style="font-size:0.82rem; line-height:1.6; color:#222; margin-bottom:14px;">
+                <p style="font-size:calc(0.82rem + 5pt); line-height:1.6; color:#222; margin-bottom:14px;">
                     非常感謝您的協助與合作！您的填答將為本研究帶來莫大的幫助！
                 </p>
                 
-                <div style="font-size:0.78rem; color:#555; margin-bottom:16px; border-top:1px solid #e3d6ca; padding-top:8px;">
+                <div style="font-size:calc(0.78rem + 5pt); color:#555; margin-bottom:16px; border-top:1px solid #e3d6ca; padding-top:8px;">
                     國立臺北教育大學 課程與教學科技傳播科技研究所<br>
                     指導教授 崔夢萍 教授<br>
                     碩士生 魏孝軒 敬上
                 </div>
 
-                <div style="font-size:0.85rem; font-weight:bold; color:#111; margin-bottom:10px;">如果您已充分理解上述說明，請勾選您參與本研究的意願：</div>
+                <div style="font-size:calc(0.85rem + 5pt); font-weight:bold; color:#111; margin-bottom:10px;">如果您已充分理解上述說明，請勾選您參與本研究的意願：</div>
 
                 <button type="button" class="consent-btn" id="btn-consent-yes">
                     ☑ 我已閱讀並理解上述說明，同意參與本研究 (開始填答)
@@ -504,8 +516,8 @@
         <!-- 拒絕參與離場頁 -->
         <div class="main-content hidden" id="view-decline">
             <div style="background:#faf6f2; border-radius:20px; padding:25px; border:1px solid #e3d6ca; text-align:center; margin-top:40px;">
-                <h3 style="color:#555; font-size:1.1rem; margin-bottom:12px;">已結束問卷</h3>
-                <p style="font-size:0.88rem; line-height:1.6; color:#666;">
+                <h3 style="color:#555; font-size:calc(1.1rem + 5pt); margin-bottom:12px;">已結束問卷</h3>
+                <p style="font-size:calc(0.88rem + 5pt); line-height:1.6; color:#666;">
                     您已選擇不同意參與本研究。感謝您的時間，您可以直接關閉此網頁視窗。
                 </p>
             </div>
@@ -513,7 +525,7 @@
 
         <!-- 頁面 1: 基本資料 -->
         <div class="main-content hidden" id="view-page1">
-            <h3 style="color:#5a3825; font-size:1rem; margin-bottom:16px;">第一部分：基本個人資料</h3>
+            <h3 style="color:#5a3825; font-size:calc(1rem + 5pt); margin-bottom:16px;">第一部分：基本個人資料</h3>
             
             <div class="form-group">
                 <label class="form-label">1. 生理性別：</label>
@@ -562,7 +574,7 @@
 
         <!-- 頁面 2: 9:16 直式影音動畫 -->
         <div class="main-content hidden" id="view-page2">
-            <h3 style="color:#ff85a2; font-size:0.95rem; margin-bottom:8px; text-align:center;">📌 前情提要</h3>
+            <h3 style="color:#ff85a2; font-size:calc(0.95rem + 5pt); margin-bottom:8px; text-align:center;">📌 前情提要</h3>
             
             <div class="story-container">
                 <!-- 4 段式 Story 進度條 -->
@@ -573,7 +585,9 @@
                     <div class="story-progress-segment"><div class="story-progress-fill" id="p-fill-4"></div></div>
                 </div>
 
-                <!-- 🎬 鏡頭 1：第三人稱視角（華人女高中生深夜躺床側身滑手機） -->
+                <!-- 🎬 鏡頭 1：第三人稱視角（華人女高中生深夜躺床側身滑手機）
+                     插畫素材：影片位於 assets/scene1-bed.mp4（9:16、6 秒、無聲循環）
+                     或照片 assets/scene1-bed.jpg；沒放檔案時顯示下方插畫 -->
                 <div class="story-scene full" id="scene-1" style="background:#06080d;">
                     <svg class="s-fill" viewBox="0 0 332 590" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
   <defs>
@@ -669,28 +683,33 @@
 
   <rect width="332" height="590" fill="url(#s1vig)"/>
 </svg>
+                    <img class="s1-real" src="assets/scene1-bed.jpg" alt="" onerror="this.remove()">
+                    <video class="s1-real" autoplay muted loop playsinline preload="auto"><source src="assets/scene1-bed.mp4" type="video/mp4" onerror="this.parentNode.remove()"></video>
                 </div>
 
                 <!-- 🎬 鏡頭 2：第一人稱視角（9:16 手機畫面）➔ 小美熱舞限時動態，自動點擊圓形頭像 -->
                 <div class="story-scene full" id="scene-2">
                     <div class="s-fill s-grad"></div>
-                    <img class="s-img" src="https://images.unsplash.com/photo-1547153760-18fc86324498?w=700&auto=format&fit=crop&q=80" alt="小美熱舞限時動態" onerror="this.style.display='none'">
+                    <img class="s-img" src="assets/profile/07.jpg" alt="小美熱舞限時動態" onerror="this.style.display='none'">
                     <div class="s2-shade"></div>
                     <div class="s2-top">
-                        <div class="s2-avatar" id="s2-avatar"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="小美" onerror="this.style.visibility='hidden'"></div>
+                        <div class="s2-avwrap">
+                            <div class="s2-avatar" id="s2-avatar"><img src="assets/avatars/xiaomei.jpg" alt="小美" onerror="this.style.visibility='hidden'"></div>
+                            <span class="ripple r2"></span><span class="ripple r2 b"></span>
+                            <div class="touch t2"></div>
+                        </div>
                         <div class="s2-meta"><b>mei_dance0312</b><span>剛剛 · 限時動態</span></div>
                     </div>
                     <div class="s2-sticker">💃 熱舞社練習紀錄</div>
-                    <span class="ripple r2"></span><span class="ripple r2 b"></span>
-                    <div class="touch t2"></div>
                 </div>
 
-                <!-- 🎬 鏡頭 3：小美個人主頁（九宮格＋簡介＋標記已清空提示） -->
+                <!-- 🎬 鏡頭 3：小美個人主頁（九宮格 9 張照片各不相同）
+                     照片放在 assets/profile/01.jpg ~ 09.jpg -->
                 <div class="story-scene full" id="scene-3">
                     <div class="s3-col">
                         <div class="s3-bar"><span>‹</span><span>mei_dance0312</span><span>⋯</span></div>
                         <div class="s3-head">
-                            <div class="s3-avatar"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="小美" onerror="this.style.visibility='hidden'"></div>
+                            <div class="s3-avatar"><img src="assets/avatars/xiaomei.jpg" alt="小美" onerror="this.style.visibility='hidden'"></div>
                             <div class="s3-stats">
                                 <div><b>86</b>貼文</div>
                                 <div><b>1,284</b>粉絲</div>
@@ -700,21 +719,19 @@
                         <div class="s3-bio">
                             <div><span class="name">小美</span><span class="tag">高一</span></div>
                             <div class="dance">Dance is life 💃🏻</div>
-                            <div>熱舞社 ｜ 練舞日常 🎵</div>
                         </div>
                         <div class="s3-tabs"><span class="on">▦</span><span>▶</span><span>🏷️</span></div>
                         <div class="s3-grid">
-                            <div class="s3-tile" style="--i:0"><img src="https://images.unsplash.com/photo-1547153760-18fc86324498?w=200&auto=format&fit=crop&q=80" style="object-position:center;" alt="熱舞社排練側拍" onerror="this.style.display='none'"></div>
-                            <div class="s3-tile" style="--i:1"><img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=200&auto=format&fit=crop&q=80" style="object-position:center;" alt="熱舞社排練側拍" onerror="this.style.display='none'"></div>
-                            <div class="s3-tile" style="--i:2"><img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=200&auto=format&fit=crop&q=80" style="object-position:center;" alt="熱舞社排練側拍" onerror="this.style.display='none'"></div>
-                            <div class="s3-tile" style="--i:3"><img src="https://images.unsplash.com/photo-1535525153412-5a42439e2b0d?w=200&auto=format&fit=crop&q=80" style="object-position:center;" alt="熱舞社排練側拍" onerror="this.style.display='none'"></div>
-                            <div class="s3-tile" style="--i:4"><img src="https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=200&auto=format&fit=crop&q=80" style="object-position:center;" alt="熱舞社排練側拍" onerror="this.style.display='none'"></div>
-                            <div class="s3-tile" style="--i:5"><img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=200&auto=format&fit=crop&q=80" style="object-position:center;" alt="熱舞社排練側拍" onerror="this.style.display='none'"></div>
-                            <div class="s3-tile" style="--i:6"><img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=200&auto=format&fit=crop&q=80" style="object-position:30% 20%;" alt="熱舞社排練側拍" onerror="this.style.display='none'"></div>
-                            <div class="s3-tile" style="--i:7"><img src="https://images.unsplash.com/photo-1547153760-18fc86324498?w=200&auto=format&fit=crop&q=80" style="object-position:70% 30%;" alt="熱舞社排練側拍" onerror="this.style.display='none'"></div>
-                            <div class="s3-tile" style="--i:8"><img src="https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=200&auto=format&fit=crop&q=80" style="object-position:20% 60%;" alt="熱舞社排練側拍" onerror="this.style.display='none'"></div>
+                            <div class="s3-tile" style="--i:0; --h:0;"><span class="ph">💃</span><img src="assets/profile/01.jpg" data-fb="assets/profile/06.jpg" alt="熱舞社排練側拍" onerror="imgFallback(this)"></div>
+                            <div class="s3-tile" style="--i:1; --h:40;"><span class="ph">🩰</span><img src="assets/profile/02.jpg" data-fb="assets/profile/06.jpg" alt="熱舞社排練側拍" onerror="imgFallback(this)"></div>
+                            <div class="s3-tile" style="--i:2; --h:80;"><span class="ph">🎵</span><img src="assets/profile/03.jpg" data-fb="assets/profile/03.jpg" alt="熱舞社排練側拍" onerror="imgFallback(this)"></div>
+                            <div class="s3-tile" style="--i:3; --h:120;"><span class="ph">👟</span><img src="assets/profile/04.jpg" data-fb="assets/profile/04.jpg" alt="熱舞社排練側拍" onerror="imgFallback(this)"></div>
+                            <div class="s3-tile" style="--i:4; --h:160;"><span class="ph">🎶</span><img src="assets/profile/05.jpg" data-fb="assets/profile/07.jpg" alt="熱舞社排練側拍" onerror="imgFallback(this)"></div>
+                            <div class="s3-tile" style="--i:5; --h:200;"><span class="ph">🪩</span><img src="assets/profile/06.jpg" data-fb="assets/profile/07.jpg" alt="熱舞社排練側拍" onerror="imgFallback(this)"></div>
+                            <div class="s3-tile" style="--i:6; --h:240;"><span class="ph">✨</span><img src="assets/profile/07.jpg" alt="熱舞社排練側拍" onerror="imgFallback(this)"></div>
+                            <div class="s3-tile" style="--i:7; --h:280;"><span class="ph">🕺</span><img src="assets/profile/08.jpg" alt="熱舞社排練側拍" onerror="imgFallback(this)"></div>
+                            <div class="s3-tile" style="--i:8; --h:320;"><span class="ph">📸</span><img src="assets/profile/09.jpg" alt="熱舞社排練側拍" onerror="imgFallback(this)"></div>
                         </div>
-                        <div class="s3-notice">🏷️ 過往與阿傑學長相關的標記貼文均已清空</div>
                     </div>
                 </div>
 
@@ -723,15 +740,15 @@
                     <div class="s4-top"><span>‹ 貼文</span><span>⋯</span></div>
                     <div class="s4-scroller">
                         <div class="s4-ghost">
-                            <div><img src="https://images.unsplash.com/photo-1535525153412-5a42439e2b0d?w=200&auto=format&fit=crop&q=80" alt="" onerror="this.style.display='none'"></div>
-                            <div><img src="https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=200&auto=format&fit=crop&q=80" alt="" onerror="this.style.display='none'"></div>
-                            <div><img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=200&auto=format&fit=crop&q=80" alt="" onerror="this.style.display='none'"></div>
+                            <div><img src="assets/profile/03.jpg" alt="" onerror="this.style.display='none'"></div>
+                            <div><img src="assets/profile/04.jpg" alt="" onerror="this.style.display='none'"></div>
+                            <div><img src="assets/profile/07.jpg" alt="" onerror="this.style.display='none'"></div>
                         </div>
                         <div class="s4-post">
-                            <div class="s4-hd"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="小美" onerror="this.style.visibility='hidden'"><span>小美 <small>@mei_dance0312 · 剛剛</small></span></div>
+                            <div class="s4-hd"><img src="assets/avatars/xiaomei.jpg" alt="小美" onerror="this.style.visibility='hidden'"><span>小美 <small>@mei_dance0312 · 剛剛</small></span></div>
                             <div class="s4-tx">社團成發影片觀看數突破 20 萬了！真的太感謝大家的支持✨💪這兩個月大家辛苦了！</div>
                             <div class="s4-media">
-                                <img src="https://images.unsplash.com/photo-1547153760-18fc86324498?w=600&auto=format&fit=crop&q=80" alt="成發照片" onerror="this.style.display='none'">
+                                <img src="assets/profile/07.jpg" alt="成發照片" onerror="this.style.display='none'">
                                 <span class="ripple r4 a"></span><span class="ripple r4 b"></span>
                                 <div class="touch t4"></div>
                                 <div class="bigheart">❤️</div>
@@ -776,13 +793,13 @@
         <div class="main-content hidden" id="view-social">
             <div class="app-header">
                 <span class="app-logo">Threads</span>
-                <span style="font-size: 1.2rem;">🔍 🔔 ✉️</span>
+                <span style="font-size: calc(1.2rem + 5pt);">🔍 🔔 ✉️</span>
             </div>
 
             <!-- 第一幕：貼文與漸進式留言區 -->
             <div id="stage-1" class="card">
                 <div class="user-header">
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" class="avatar" alt="小美">
+                    <img src="assets/avatars/xiaomei.jpg" class="avatar" alt="小美">
                     <div class="user-meta">
                         <div class="name">小美</div>
                         <div class="handle">@mei_dance0312</div>
@@ -791,11 +808,11 @@
                 <div class="post-body">社團成發影片觀看數突破 20 萬了！真的太感謝大家的支持✨💪這兩個月大家辛苦了！</div>
                 
                 <div class="media-box">
-                    <img src="https://images.unsplash.com/photo-1547153760-18fc86324498?w=600&auto=format&fit=crop&q=80" alt="成發照片">
+                    <img src="assets/profile/07.jpg" alt="成發照片">
                 </div>
 
                 <div class="threads-metrics">
-                    <span style="color:#ff85a2; font-weight:bold;">❤️ 152 個讚</span>
+                    <span style="color:#ff85a2; font-weight:bold;">❤️ 153 個讚</span>
                     <span>💬 8 則留言</span>
                     <span>🔁 12 次轉發</span>
                 </div>
@@ -806,7 +823,7 @@
 
                 <!-- 8 則留言預設隱藏，點擊按鈕後一則一則慢慢出現 -->
                 <div id="comments-1" class="comments-list hidden">
-                    <div style="font-size:0.78rem; color:#888; margin-bottom:8px;">熱門留言 (8)：</div>
+                    <div style="font-size:calc(0.78rem + 5pt); color:#888; margin-bottom:8px;">熱門留言 (8)：</div>
                     <div id="c1-1" class="comment-item hidden"><span class="comment-author">@dance_girl</span>成發表現超亮眼！小美加油！！加油加油✨</div>
                     <div id="c1-2" class="comment-item hidden"><span class="comment-author">@aj_chen88</span>這舞蹈服穿這樣也太露了吧，是在勾引誰啊？😏</div>
                     <div id="c1-3" class="comment-item hidden"><span class="comment-author">@bro_jack</span>分手後就發這種照片，身材挺有料的嘛，今晚可以約嗎？</div>
@@ -825,7 +842,7 @@
             <!-- 第二幕 (高擬真私密視訊側錄) -->
             <div id="stage-2" class="card hidden">
                 <div class="user-header">
-                    <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&auto=format&fit=crop&q=80" class="avatar" alt="阿傑">
+                    <img src="assets/avatars/ajie.jpg" class="avatar" alt="阿傑">
                     <div class="user-meta">
                         <div class="name">阿傑</div>
                         <div class="handle">@aj_chen88</div>
@@ -865,7 +882,7 @@
             <!-- 第三幕 -->
             <div id="stage-3" class="card hidden" style="border-color: var(--accent-red);">
                 <div class="user-header">
-                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop&q=80" class="avatar" alt="爆料群">
+                    <img src="assets/avatars/group.jpg" class="avatar" alt="爆料群">
                     <div class="user-meta">
                         <div class="name" style="color: var(--accent-red);">拆穿小美真面目 (32人)</div>
                         <div class="handle">@hate_school_01 創建了群組</div>
@@ -878,10 +895,10 @@
                         有好康的黑料跟大家分享啦！私密照片跟對話紀錄打包檔來了！大家快來看清她的真面目！
                     </div>
 
-                    <div style="background:#220808; border:1px dashed var(--accent-red); border-radius:12px; padding:12px; text-align:center; margin:10px 0; color:#ff9999; font-size:0.8rem;">
+                    <div style="background:#220808; border:1px dashed var(--accent-red); border-radius:12px; padding:12px; text-align:center; margin:10px 0; color:#ff9999; font-size:calc(0.8rem + 5pt);">
                         <div style="font-size:1.5rem; margin-bottom:4px;">🔒</div>
                         <strong>已阻擋未經同意散布之私密影像與對話打包檔</strong><br>
-                        <span style="color:#888; font-size:0.7rem;">檔名：小美私訊記錄與隱私照.zip</span>
+                        <span style="color:#888; font-size:calc(0.7rem + 5pt);">檔名：小美私訊記錄與隱私照.zip</span>
                     </div>
 
                     <div id="chat-m1" class="chat-bubble left hidden">
@@ -902,11 +919,11 @@
         <div class="line-container hidden" id="view-line">
             <div class="line-header">
                 <span>←</span>
-                <span style="font-size:1.2rem;">👤</span>
+                <span style="font-size:calc(1.2rem + 5pt);">👤</span>
                 <span>好友 小宣</span>
             </div>
             <div class="line-body">
-                <div style="text-align:center; font-size:0.75rem; color:#fff; margin-bottom:15px; opacity:0.8;">今日 上午 10:15</div>
+                <div style="text-align:center; font-size:calc(0.75rem + 5pt); color:#fff; margin-bottom:15px; opacity:0.8;">今日 上午 10:15</div>
                 
                 <div class="line-bubble">
                     欸妳有看到那個爆料群組嗎？<br>聽說小美今天進學校後就躲在廁所大哭，剛剛被輔導老師帶去輔導處了... 聽說她現在情緒崩潰，明天好像不敢來學校了... 😰
@@ -920,14 +937,14 @@
 
         <!-- 頁面 5: 10x10 情緒儀表板 -->
         <div class="main-content hidden" id="view-meter" style="display:flex; flex-direction:column; align-items:center;">
-            <h3 style="color:#5a3825; font-size:0.95rem; margin-top:10px; text-align:center; line-height:1.4;">
+            <h3 style="color:#5a3825; font-size:calc(0.95rem + 5pt); margin-top:10px; text-align:center; line-height:1.4;">
                 目睹剛才情境後，請點選您當下的情緒感受<br>
-                <span style="color:#8a5a3c; font-size:0.82rem;">（至多點選 5 個格子）</span>
+                <span style="color:#8a5a3c; font-size:calc(0.82rem + 5pt);">（至多點選 5 個格子）</span>
             </h3>
 
             <div class="grid-10x10" id="mood-grid"></div>
 
-            <div style="font-size:0.8rem; color:#555;" id="selected-count-text">已選擇：0 / 5 個格子</div>
+            <div style="font-size:calc(0.8rem + 5pt); color:#555;" id="selected-count-text">已選擇：0 / 5 個格子</div>
 
             <button class="btn-action btn-highlight" id="btn-to-s1" style="display:none; background:var(--accent-blue); margin-top:12px;">
                 確認情緒選擇，進入心理評估 ➔
@@ -936,7 +953,7 @@
 
         <!-- 頁面 6-1: 責任感量表 -->
         <div class="main-content hidden" id="view-s1">
-            <h3 style="color:#5a3825; font-size:1rem; margin-bottom:12px;">第二部分 (1/3)：責任感量表</h3>
+            <h3 style="color:#5a3825; font-size:calc(1rem + 5pt); margin-bottom:12px;">第二部分 (1/3)：責任感量表</h3>
             
             <div class="survey-instruction">
                 <strong>填答說明：</strong> 本問卷旨在瞭解您觀看完網路性騷擾情境後，對於「個人責任」的主觀感受。請仔細閱讀每一個題項，在最符合您情況的選項空格內劃記。答案無關對錯，請安心填答。
@@ -945,55 +962,55 @@
             <div class="survey-item">
                 <div class="survey-q">1. 閱讀完這個情境後，我認為自己有責任介入並協助處理網路性騷擾事件。</div>
                 <div class="scale-options" data-var="resp_1">
-                    <button type="button" class="scale-btn" onclick="setScore(this)">5<br>非常符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">4<br>符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">3<br>普通</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">2<br>不符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">1<br>非常不符合</button>
+                    <button type="button" class="scale-btn" data-v="5" onclick="setScore(this)">非常符合</button>
+                    <button type="button" class="scale-btn" data-v="4" onclick="setScore(this)">符合</button>
+                    <button type="button" class="scale-btn" data-v="3" onclick="setScore(this)">普通</button>
+                    <button type="button" class="scale-btn" data-v="2" onclick="setScore(this)">不符合</button>
+                    <button type="button" class="scale-btn" data-v="1" onclick="setScore(this)">非常不符合</button>
                 </div>
             </div>
 
             <div class="survey-item">
                 <div class="survey-q">2. 即使我不是網路性騷擾他人的人，我依然有責任試著去阻止。</div>
                 <div class="scale-options" data-var="resp_2">
-                    <button type="button" class="scale-btn" onclick="setScore(this)">5<br>非常符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">4<br>符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">3<br>普通</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">2<br>不符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">1<br>非常不符合</button>
+                    <button type="button" class="scale-btn" data-v="5" onclick="setScore(this)">非常符合</button>
+                    <button type="button" class="scale-btn" data-v="4" onclick="setScore(this)">符合</button>
+                    <button type="button" class="scale-btn" data-v="3" onclick="setScore(this)">普通</button>
+                    <button type="button" class="scale-btn" data-v="2" onclick="setScore(this)">不符合</button>
+                    <button type="button" class="scale-btn" data-v="1" onclick="setScore(this)">非常不符合</button>
                 </div>
             </div>
 
             <div class="survey-item">
                 <div class="survey-q">3. 我相信我的行動能夠有助於減少網路性騷擾。</div>
                 <div class="scale-options" data-var="resp_3">
-                    <button type="button" class="scale-btn" onclick="setScore(this)">5<br>非常符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">4<br>符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">3<br>普通</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">2<br>不符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">1<br>非常不符合</button>
+                    <button type="button" class="scale-btn" data-v="5" onclick="setScore(this)">非常符合</button>
+                    <button type="button" class="scale-btn" data-v="4" onclick="setScore(this)">符合</button>
+                    <button type="button" class="scale-btn" data-v="3" onclick="setScore(this)">普通</button>
+                    <button type="button" class="scale-btn" data-v="2" onclick="setScore(this)">不符合</button>
+                    <button type="button" class="scale-btn" data-v="1" onclick="setScore(this)">非常不符合</button>
                 </div>
             </div>
 
             <div class="survey-item">
                 <div class="survey-q">4. 當看到同學遇到這種情況時，我不應該當個隱形的旁觀者，而應該採取行動。</div>
                 <div class="scale-options" data-var="resp_4">
-                    <button type="button" class="scale-btn" onclick="setScore(this)">5<br>非常符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">4<br>符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">3<br>普通</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">2<br>不符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">1<br>非常不符合</button>
+                    <button type="button" class="scale-btn" data-v="5" onclick="setScore(this)">非常符合</button>
+                    <button type="button" class="scale-btn" data-v="4" onclick="setScore(this)">符合</button>
+                    <button type="button" class="scale-btn" data-v="3" onclick="setScore(this)">普通</button>
+                    <button type="button" class="scale-btn" data-v="2" onclick="setScore(this)">不符合</button>
+                    <button type="button" class="scale-btn" data-v="1" onclick="setScore(this)">非常不符合</button>
                 </div>
             </div>
 
             <div class="survey-item">
                 <div class="survey-q">5. 閱讀完這個情境後，我不認為那是「別人」或老師的事，這也是我的事。</div>
                 <div class="scale-options" data-var="resp_5">
-                    <button type="button" class="scale-btn" onclick="setScore(this)">5<br>非常符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">4<br>符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">3<br>普通</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">2<br>不符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">1<br>非常不符合</button>
+                    <button type="button" class="scale-btn" data-v="5" onclick="setScore(this)">非常符合</button>
+                    <button type="button" class="scale-btn" data-v="4" onclick="setScore(this)">符合</button>
+                    <button type="button" class="scale-btn" data-v="3" onclick="setScore(this)">普通</button>
+                    <button type="button" class="scale-btn" data-v="2" onclick="setScore(this)">不符合</button>
+                    <button type="button" class="scale-btn" data-v="1" onclick="setScore(this)">非常不符合</button>
                 </div>
             </div>
 
@@ -1004,64 +1021,64 @@
 
         <!-- 頁面 6-2: 挺身自我效能量表 -->
         <div class="main-content hidden" id="view-s2">
-            <h3 style="color:#5a3825; font-size:1rem; margin-bottom:12px;">第二部分 (2/3)：挺身自我效能量表</h3>
+            <h3 style="color:#5a3825; font-size:calc(1rem + 5pt); margin-bottom:12px;">第二部分 (2/3)：挺身自我效能量表</h3>
             
             <div class="survey-instruction">
                 <strong>填答說明：</strong> 本問卷旨在瞭解您在面對類似剛才的網路性騷擾事件時，對於「自己是否有能力採取行動」的信心程度。請仔細閱讀每一個題項，在最符合您情況的選項空格內劃記。答案無關對錯，請安心填答。
             </div>
 
             <div class="survey-item">
-                <div class="survey-q">4-1. 我感覺到我有能力口頭制止某些同學惡劣對待另一同學。</div>
+                <div class="survey-q">1. 我感覺到我有能力口頭制止某些同學惡劣對待另一同學。</div>
                 <div class="scale-options" data-var="eff_1">
-                    <button type="button" class="scale-btn" onclick="setScore(this)">5<br>非常符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">4<br>符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">3<br>普通</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">2<br>不符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">1<br>非常不符合</button>
+                    <button type="button" class="scale-btn" data-v="5" onclick="setScore(this)">非常符合</button>
+                    <button type="button" class="scale-btn" data-v="4" onclick="setScore(this)">符合</button>
+                    <button type="button" class="scale-btn" data-v="3" onclick="setScore(this)">普通</button>
+                    <button type="button" class="scale-btn" data-v="2" onclick="setScore(this)">不符合</button>
+                    <button type="button" class="scale-btn" data-v="1" onclick="setScore(this)">非常不符合</button>
                 </div>
             </div>
 
             <div class="survey-item">
-                <div class="survey-q">4-2. 我感覺到我有能力幫助被網路性騷擾的同學。</div>
+                <div class="survey-q">2. 我感覺到我有能力幫助被網路性騷擾的同學。</div>
                 <div class="scale-options" data-var="eff_2">
-                    <button type="button" class="scale-btn" onclick="setScore(this)">5<br>非常符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">4<br>符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">3<br>普通</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">2<br>不符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">1<br>非常不符合</button>
+                    <button type="button" class="scale-btn" data-v="5" onclick="setScore(this)">非常符合</button>
+                    <button type="button" class="scale-btn" data-v="4" onclick="setScore(this)">符合</button>
+                    <button type="button" class="scale-btn" data-v="3" onclick="setScore(this)">普通</button>
+                    <button type="button" class="scale-btn" data-v="2" onclick="setScore(this)">不符合</button>
+                    <button type="button" class="scale-btn" data-v="1" onclick="setScore(this)">非常不符合</button>
                 </div>
             </div>
 
             <div class="survey-item">
-                <div class="survey-q">4-3. 我感覺到我有能力阻止網路性騷擾。</div>
+                <div class="survey-q">3. 我感覺到我有能力阻止網路性騷擾。</div>
                 <div class="scale-options" data-var="eff_3">
-                    <button type="button" class="scale-btn" onclick="setScore(this)">5<br>非常符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">4<br>符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">3<br>普通</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">2<br>不符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">1<br>非常不符合</button>
+                    <button type="button" class="scale-btn" data-v="5" onclick="setScore(this)">非常符合</button>
+                    <button type="button" class="scale-btn" data-v="4" onclick="setScore(this)">符合</button>
+                    <button type="button" class="scale-btn" data-v="3" onclick="setScore(this)">普通</button>
+                    <button type="button" class="scale-btn" data-v="2" onclick="setScore(this)">不符合</button>
+                    <button type="button" class="scale-btn" data-v="1" onclick="setScore(this)">非常不符合</button>
                 </div>
             </div>
 
             <div class="survey-item">
-                <div class="survey-q">4-4. 我感覺到我有能力告訴正在欺負別人的騷擾者，停止做這些事情。</div>
+                <div class="survey-q">4. 我感覺到我有能力告訴正在欺負別人的騷擾者，停止做這些事情。</div>
                 <div class="scale-options" data-var="eff_4">
-                    <button type="button" class="scale-btn" onclick="setScore(this)">5<br>非常符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">4<br>符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">3<br>普通</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">2<br>不符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">1<br>非常不符合</button>
+                    <button type="button" class="scale-btn" data-v="5" onclick="setScore(this)">非常符合</button>
+                    <button type="button" class="scale-btn" data-v="4" onclick="setScore(this)">符合</button>
+                    <button type="button" class="scale-btn" data-v="3" onclick="setScore(this)">普通</button>
+                    <button type="button" class="scale-btn" data-v="2" onclick="setScore(this)">不符合</button>
+                    <button type="button" class="scale-btn" data-v="1" onclick="setScore(this)">非常不符合</button>
                 </div>
             </div>
 
             <div class="survey-item">
-                <div class="survey-q">4-5. 我感覺到我有能力阻止某群體利用不實故事與謊言來傷害某個同學。</div>
+                <div class="survey-q">5. 我感覺到我有能力阻止某群體利用不實故事與謊言來傷害某個同學。</div>
                 <div class="scale-options" data-var="eff_5">
-                    <button type="button" class="scale-btn" onclick="setScore(this)">5<br>非常符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">4<br>符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">3<br>普通</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">2<br>不符合</button>
-                    <button type="button" class="scale-btn" onclick="setScore(this)">1<br>非常不符合</button>
+                    <button type="button" class="scale-btn" data-v="5" onclick="setScore(this)">非常符合</button>
+                    <button type="button" class="scale-btn" data-v="4" onclick="setScore(this)">符合</button>
+                    <button type="button" class="scale-btn" data-v="3" onclick="setScore(this)">普通</button>
+                    <button type="button" class="scale-btn" data-v="2" onclick="setScore(this)">不符合</button>
+                    <button type="button" class="scale-btn" data-v="1" onclick="setScore(this)">非常不符合</button>
                 </div>
             </div>
 
@@ -1072,7 +1089,7 @@
 
         <!-- 頁面 6-3: 旁觀者行為傾向量表 -->
         <div class="main-content hidden" id="view-s3">
-            <h3 style="color:#5a3825; font-size:1rem; margin-bottom:12px;">第二部分 (3/3)：旁觀者行為傾向量表</h3>
+            <h3 style="color:#5a3825; font-size:calc(1rem + 5pt); margin-bottom:12px;">第二部分 (3/3)：旁觀者行為傾向量表</h3>
             
             <div class="survey-instruction">
                 <strong>填答說明：</strong> 本問卷旨在瞭解若您日常生活中使用社群媒體（如 IG、Threads、Discord）時，遇到類似剛才的網路性騷擾事件，您採取以下行為的可能性。請仔細閱讀每一個題項，在最符合您情況的選項空格內劃記。答案無關對錯，請安心填答。
@@ -1090,12 +1107,12 @@
         <!-- 頁面 7: 關懷提醒與心理支持資源 -->
         <div class="main-content hidden" id="view-finish">
             <div style="background:#faf6f2; border-radius:20px; padding:18px; border:1px solid #e3d6ca; text-align:left;">
-                <h3 style="color:#5a3825; font-size:1.05rem; margin-bottom:12px; text-align:center;">非常感謝您耐心完成本研究問卷！</h3>
+                <h3 style="color:#5a3825; font-size:calc(1.05rem + 5pt); margin-bottom:12px; text-align:center;">非常感謝您耐心完成本研究問卷！</h3>
                 
-                <p style="font-size:0.8rem; line-height:1.6; color:#222; margin-bottom:12px;">
+                <p style="font-size:calc(0.8rem + 5pt); line-height:1.6; color:#222; margin-bottom:12px;">
                     由於本問卷涉及「網路性騷擾情境」之體驗與閱讀，若您在觀看或填答過程中感到任何心理不適、焦慮、困惑，或情緒受到影響，這是正常的心理反應。
                 </p>
-                <p style="font-size:0.8rem; line-height:1.6; color:#222; margin-bottom:12px;">
+                <p style="font-size:calc(0.8rem + 5pt); line-height:1.6; color:#222; margin-bottom:12px;">
                     若您或您身邊的同學需要心理支持、專業諮詢，或遇到了相關的網路困擾需要尋求協助，隨時可以透過以下保密且免費的官方管道尋求即時幫助：
                 </p>
 
@@ -1136,11 +1153,11 @@
                     </tbody>
                 </table>
 
-                <p style="font-size:0.82rem; color:#111; font-weight:bold; text-align:center; margin-top:14px;">
+                <p style="font-size:calc(0.82rem + 5pt); color:#111; font-weight:bold; text-align:center; margin-top:14px;">
                     再次感謝您的參與！請點擊下方「提交」完成問卷。<br>祝您學習順利、身心健康！
                 </p>
 
-                <div id="submit-error" class="hidden" style="margin-top:14px; padding:10px 12px; border-radius:10px; background:#fdecee; border:1px solid #d93a49; color:#9b1c2a; font-size:0.8rem; line-height:1.5;"></div>
+                <div id="submit-error" class="hidden" style="margin-top:14px; padding:10px 12px; border-radius:10px; background:#fdecee; border:1px solid #d93a49; color:#9b1c2a; font-size:calc(0.8rem + 5pt); line-height:1.5;"></div>
 
                 <button class="btn-action btn-highlight" id="btn-submit-final" style="margin-top:16px; background:var(--accent-green);">
                     ✅ 提交問卷，完成離場
@@ -1152,8 +1169,8 @@
         <div class="main-content hidden" id="view-submitted">
             <div style="background:#faf6f2; border-radius:20px; padding:30px; border:1px solid #e3d6ca; text-align:center; margin-top:50px;">
                 <div style="font-size:3.5rem; margin-bottom:15px;">🎉</div>
-                <h3 style="color:#27ae60; font-size:1.2rem; margin-bottom:12px;">問卷已成功提交！</h3>
-                <p style="font-size:0.88rem; line-height:1.6; color:#555;">
+                <h3 style="color:#27ae60; font-size:calc(1.2rem + 5pt); margin-bottom:12px;">問卷已成功提交！</h3>
+                <p style="font-size:calc(0.88rem + 5pt); line-height:1.6; color:#555;">
                     您的答題資料已安全傳送。<br>您可以安心關閉此視窗，再次感謝您的協助與貢獻！
                 </p>
             </div>
@@ -1216,7 +1233,7 @@
     const storyCaptions = [
         "💬 深夜昏暗的房間裡，妳躺在床上滑著手機社群...",
         "💬 演算法推播了小美穿著 Bra Top 熱舞的限時動態，妳點擊了大頭貼...",
-        "💬 切換至小美主頁，九宮格全是熱舞社照片，過往與阿傑學長的標記已全數消失...",
+        "💬 切換至小美主頁，九宮格全是熱舞社排練的照片...",
         "💬 往下滑動看到小美最新貼文，妳給她按了愛心默默支持 ❤️"
     ];
 
@@ -1248,11 +1265,11 @@
             qDiv.innerHTML = `
                 <div class="survey-q">${qText}</div>
                 <div class="scale-options" data-var="bystander_${qNum}">
-                    <button type="button" class="scale-btn" onclick="setBystanderScore(this, ${qNum})">5<br>非常符合</button>
-                    <button type="button" class="scale-btn" onclick="setBystanderScore(this, ${qNum})">4<br>符合</button>
-                    <button type="button" class="scale-btn" onclick="setBystanderScore(this, ${qNum})">3<br>普通</button>
-                    <button type="button" class="scale-btn" onclick="setBystanderScore(this, ${qNum})">2<br>不符合</button>
-                    <button type="button" class="scale-btn" onclick="setBystanderScore(this, ${qNum})">1<br>非常不符合</button>
+                    <button type="button" class="scale-btn" data-v="5" onclick="setBystanderScore(this, ${qNum})">非常符合</button>
+                    <button type="button" class="scale-btn" data-v="4" onclick="setBystanderScore(this, ${qNum})">符合</button>
+                    <button type="button" class="scale-btn" data-v="3" onclick="setBystanderScore(this, ${qNum})">普通</button>
+                    <button type="button" class="scale-btn" data-v="2" onclick="setBystanderScore(this, ${qNum})">不符合</button>
+                    <button type="button" class="scale-btn" data-v="1" onclick="setBystanderScore(this, ${qNum})">非常不符合</button>
                 </div>
             `;
             bystanderContainer.appendChild(qDiv);
@@ -1382,6 +1399,36 @@
             revealComments1();
         };
 
+        // ===== 視窗自動慢慢捲動（受試者一旦自己滑動／觸碰就立刻停止，不跟他搶）=====
+        const scroller = document.getElementById('view-social');
+        let scrollRaf = null, scrollLocked = false;
+        ['wheel', 'touchstart', 'mousedown', 'keydown'].forEach(ev =>
+            scroller.addEventListener(ev, () => { scrollLocked = true; cancelAnimationFrame(scrollRaf); }, { passive: true }));
+
+        function animateScroll(target, ms) {
+            cancelAnimationFrame(scrollRaf);
+            const from = scroller.scrollTop, dist = target - from;
+            if (Math.abs(dist) < 2) return;
+            scroller.style.scrollBehavior = 'auto';
+            const t0 = performance.now();
+            const step = (now) => {
+                if (scrollLocked) { scroller.style.scrollBehavior = ''; return; }
+                const t = Math.min(1, (now - t0) / ms);
+                scroller.scrollTop = from + dist * (0.5 - Math.cos(Math.PI * t) / 2);
+                if (t < 1) scrollRaf = requestAnimationFrame(step);
+                else scroller.style.scrollBehavior = '';
+            };
+            scrollRaf = requestAnimationFrame(step);
+        }
+
+        // 讓某個元素的底部出現在視窗內（速度單位：像素／秒）
+        function autoScrollToEl(el, margin, speed, minMs, maxMs) {
+            const delta = el.getBoundingClientRect().bottom - scroller.getBoundingClientRect().bottom + margin;
+            if (delta <= 2) return;
+            const ms = Math.min(maxMs, Math.max(minMs, delta / speed * 1000));
+            animateScroll(scroller.scrollTop + delta, ms);
+        }
+
         // 第一幕 ➔ 第二幕
         document.getElementById('btn-to-stage2').onclick = function() {
             showTransition('⏰', '隔天中午，上完體育課回到教室的妳，再次打開了 Threads...', function() {
@@ -1399,6 +1446,15 @@
                     document.getElementById('m-comments').innerText = `💬 ${comments.toLocaleString()} 則留言`;
                     document.getElementById('m-reposts').innerText = `🔁 ${reposts.toLocaleString()} 次轉發`;
                 }, 200);
+
+                // 畫面先跳到視窗最上方，停一下，再慢慢自動往下滑到「查看同儕…」按鈕
+                scrollLocked = false;
+                scroller.style.scrollBehavior = 'auto';
+                scroller.scrollTop = 0;
+                scroller.style.scrollBehavior = '';
+                setTimeout(() => {
+                    autoScrollToEl(document.getElementById('btn-unlock-2'), 28, 60, 3000, 16000);
+                }, 1800);
             });
         };
 
@@ -1407,12 +1463,20 @@
             document.getElementById('comments-2').classList.remove('hidden');
             this.style.display = 'none';
 
-            setTimeout(() => { document.getElementById('c2-1').classList.remove('hidden'); }, 900);
-            setTimeout(() => { document.getElementById('c2-2').classList.remove('hidden'); }, 1800);
-            setTimeout(() => { 
-                document.getElementById('c2-3').classList.remove('hidden');
-                document.getElementById('btn-trigger-pop').style.display = 'flex';
-            }, 2700);
+            // 每則留言浮出後，畫面自動往下跟著看；最後捲到「結束瀏覽，繼續滑手機」按鈕
+            scrollLocked = false;
+            const ids = ['c2-1', 'c2-2', 'c2-3'];
+            ids.forEach((id, i) => {
+                setTimeout(() => {
+                    document.getElementById(id).classList.remove('hidden');
+                    let target = document.getElementById(id);
+                    if (i === ids.length - 1) {
+                        target = document.getElementById('btn-trigger-pop');
+                        target.style.display = 'flex';
+                    }
+                    autoScrollToEl(target, 28, 150, 700, 2500);
+                }, 1000 + i * 1400);
+            });
         };
 
         // 第二幕按鈕：觸發推播
@@ -1621,12 +1685,19 @@
         }
     }
 
+    // 圖片載入失敗時：先試備援圖片，仍失敗就隱藏（露出底下的色塊）
+    function imgFallback(img) {
+        const fb = img.dataset.fb;
+        if (fb && !img.dataset.tried) { img.dataset.tried = '1'; img.src = fb; }
+        else { img.style.display = 'none'; }
+    }
+
     function setScore(btn) {
         const parent = btn.parentElement;
         const varName = parent.getAttribute('data-var');
         parent.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        const score = btn.innerText.charAt(0);
+        const score = btn.dataset.v;
         surveyData[varName] = parseInt(score);
     }
 
@@ -1634,7 +1705,7 @@
         const parent = btn.parentElement;
         parent.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        const score = btn.innerText.charAt(0);
+        const score = btn.dataset.v;
         surveyData.bystander[`Q${qNum}`] = parseInt(score);
     }
 </script>
