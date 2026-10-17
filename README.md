@@ -19,7 +19,9 @@ Google Apps Script 網頁應用程式 ──寫入──▶ Google Sheet（respo
 ├── index.html          問卷主頁（提交時自動上傳）
 ├── admin.html          管理頁面（表格、篩選、統計、匯出）
 ├── config.js           ★ 唯一需要填寫的設定：Apps Script 網址
-├── input_file_0.mp4    ★ 第二幕使用的影片，需自行放進來（見下方注意事項）
+├── assets/
+│   ├── line-video-call.mp4          視訊側錄影片（9:16，8 秒，已放好）
+│   └── line-video-call-poster.jpg   影片載入前的封面圖
 ├── apps-script/
 │   └── Code.gs         貼到 Google Apps Script 的後端程式
 └── README.md
@@ -71,7 +73,7 @@ window.SURVEY_CONFIG = {
 ## 二、上架到 GitHub Pages
 
 1. 在 GitHub 建立新 repository（例如 `survey`）。
-2. 把整個專案資料夾的檔案上傳（`index.html`、`admin.html`、`config.js`、`input_file_0.mp4`、`apps-script/`、`README.md`）。
+2. 把整個專案資料夾的檔案上傳（`index.html`、`admin.html`、`config.js`、`assets/`、`apps-script/`、`README.md`）。
    - 網頁操作：**Add file → Upload files**，直接拖曳。
    - 或使用 git：
      ```bash
@@ -151,7 +153,8 @@ Apps Script 的網頁應用程式是「版本制」，改了 `Code.gs` 之後，
 ## 七、重要注意事項
 
 ### 影片檔
-第二幕使用 `<video src="input_file_0.mp4">`，這個檔案**不在程式碼裡**，必須和 `index.html` 放在同一層，檔名要完全一致，否則該幕會是空白影片。GitHub 單檔上限 100 MB，建議壓縮到 20 MB 以內。
+視訊側錄頁使用 `assets/line-video-call.mp4`（1080×1920、H.264 + AAC、約 5.2 MB），已放在專案內並調整為適合網頁串流的格式。上傳 GitHub 時請連同 `assets/` 資料夾一起上傳。若日後要換影片，直接覆蓋同名檔案即可，建議維持 9:16 直式、20 MB 以內。
+影片預設靜音自動播放（瀏覽器規定），受訪者可在播放器上自行開啟聲音。
 
 ### 圖片來源
 情境中的頭像與照片是從 Unsplash 外部連結載入，需要網路連線，且若對方移除圖片會顯示破圖。正式施測前建議下載到專案內（例如 `images/`）並改用相對路徑。

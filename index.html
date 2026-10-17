@@ -24,26 +24,38 @@
         }
 
         body {
-            background-color: #050505; color: var(--text-primary);
-            display: flex; justify-content: center; align-items: center;
-            min-height: 100vh; padding: 15px;
+            background-color: #ffffff; color: #111111;
+            display: flex; justify-content: center; align-items: flex-start;
+            min-height: 100vh; padding: 24px 15px;
         }
 
-        .device-wrapper {
-            width: 100%; max-width: 410px; height: 830px;
+        /* 預設（問卷頁面）：白底、無手機框 */
+        .device-wrapper { width: 100%; max-width: 560px; position: relative; }
+        .screen { width: 100%; position: relative; background: #ffffff; }
+
+        /* 手機框：只在「前情提要」「情境故事畫面」出現（由 JS 切換 .phone-mode） */
+        .device-wrapper.phone-mode {
+            max-width: 410px; height: 830px;
             background: #18181b; border-radius: 48px; padding: 12px;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.9), inset 0 0 2px rgba(255,255,255,0.2);
-            position: relative;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.35), inset 0 0 2px rgba(255,255,255,0.2);
+            animation: phoneIn 0.35s ease-out;
         }
-
-        .screen {
-            width: 100%; height: 100%; background-color: var(--bg-color);
+        .device-wrapper.phone-mode .screen {
+            height: 100%; background-color: var(--bg-color); color: var(--text-primary);
             border-radius: 38px; overflow: hidden; display: flex;
-            flex-direction: column; position: relative; border: 1px solid #222;
+            flex-direction: column; border: 1px solid #222;
+        }
+        .device-wrapper.phone-mode .status-bar { display: flex; }
+        .device-wrapper.phone-mode .main-content { overflow-y: auto; padding: 16px; scroll-behavior: smooth; flex: 1; }
+        .device-wrapper:not(.phone-mode) .notification-banner,
+        .device-wrapper:not(.phone-mode) .transition-overlay { display: none !important; }
+        @keyframes phoneIn {
+            from { opacity: 0; transform: translateY(12px) scale(0.98); }
+            to   { opacity: 1; transform: none; }
         }
 
         .status-bar {
-            height: 44px; padding: 0 24px; display: flex;
+            height: 44px; padding: 0 24px; display: none;
             justify-content: space-between; align-items: center;
             font-size: 0.85rem; font-weight: 600; color: #fff;
             z-index: 100; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px);
@@ -83,7 +95,7 @@
         .notif-title { font-size: 0.82rem; font-weight: 700; color: #fff; display: flex; justify-content: space-between; }
         .notif-text { font-size: 0.8rem; color: #ddd; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        .main-content { flex: 1; overflow-y: auto; padding: 16px; scroll-behavior: smooth; }
+        .main-content { padding: 8px 0 48px; }
         .main-content::-webkit-scrollbar { display: none; }
 
         .app-header {
@@ -114,7 +126,8 @@
         .media-box img, .media-box video { width: 100%; max-height: 280px; object-fit: cover; display: block; }
 
         .threads-metrics {
-            display: flex; gap: 16px; font-size: 0.85rem; color: var(--text-secondary); padding: 8px 0; border-top: 1px solid #222; margin-top: 8px;
+            display: flex; justify-content: space-between; gap: 8px; font-size: 0.78rem; white-space: nowrap;
+            color: var(--text-secondary); padding: 8px 0; border-top: 1px solid #222; margin-top: 8px;
         }
 
         .comments-list { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--card-border); }
@@ -166,13 +179,14 @@
 
         /* 9:16 直式動畫模組 */
         .story-container {
-            width: 100%; height: 510px; background: #000; border-radius: 20px;
-            position: relative; overflow: hidden; border: 1px solid #333; margin-bottom: 12px;
+            width: min(332px, 100%); aspect-ratio: 9 / 16; margin: 0 auto 12px;
+            background: #000; border-radius: 20px;
+            position: relative; overflow: hidden; border: 1px solid #333;
         }
 
         .story-progress-bar {
             position: absolute; top: 10px; left: 10px; right: 10px;
-            display: flex; gap: 4px; z-index: 20;
+            display: flex; gap: 4px; z-index: 40;
         }
 
         .story-progress-segment {
@@ -210,7 +224,7 @@
         /* 10x10 情緒網格 */
         .grid-10x10 {
             display: grid; grid-template-columns: repeat(10, 1fr); gap: 2px; width: 100%; max-width: 360px; height: 360px;
-            background: #000; padding: 3px; border-radius: 8px; margin: 12px 0; border: 1px solid #555;
+            background: #e8ddd3; padding: 3px; border-radius: 8px; margin: 12px 0; border: 1px solid #c9b8a8;
         }
 
         .grid-cell {
@@ -229,21 +243,21 @@
 
         /* 表單與量表 */
         .form-group { margin-bottom: 16px; }
-        .form-label { font-size: 0.88rem; font-weight: 600; color: #ddd; margin-bottom: 8px; display: block; }
+        .form-label { font-size: 0.88rem; font-weight: 600; color: #222; margin-bottom: 8px; display: block; }
         .form-select, .form-input {
-            width: 100%; padding: 10px; background: #1f1f1f; border: 1px solid #333; color: white; border-radius: 10px; font-size: 0.88rem;
+            width: 100%; padding: 10px; background: #ffffff; border: 1px solid #cdbfb3; color: #111; border-radius: 10px; font-size: 0.88rem;
         }
 
         .survey-instruction {
-            background: #1a1a24; padding: 12px 14px; border-radius: 12px; border-left: 4px solid var(--accent-blue);
-            font-size: 0.82rem; line-height: 1.5; color: #ccc; margin-bottom: 16px;
+            background: #f6f1ec; padding: 12px 14px; border-radius: 12px; border-left: 4px solid #8a5a3c;
+            font-size: 0.82rem; line-height: 1.5; color: #333; margin-bottom: 16px;
         }
 
-        .survey-item { margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid #222; }
-        .survey-q { font-size: 0.86rem; margin-bottom: 10px; line-height: 1.45; color: #eee; font-weight: 500; }
+        .survey-item { margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid #e6dcd3; }
+        .survey-q { font-size: 0.86rem; margin-bottom: 10px; line-height: 1.45; color: #111; font-weight: 500; }
         .scale-options { display: flex; justify-content: space-between; gap: 4px; }
         .scale-btn {
-            flex: 1; padding: 8px 2px; background: #1e1e1e; border: 1px solid #333; color: #ccc; border-radius: 8px; font-size: 0.72rem; cursor: pointer; text-align: center; line-height: 1.2;
+            flex: 1; padding: 8px 2px; background: #faf6f2; border: 1px solid #d6c9bd; color: #333; border-radius: 8px; font-size: 0.72rem; cursor: pointer; text-align: center; line-height: 1.2;
         }
         .scale-btn.active { background: var(--accent-blue); color: white; border-color: var(--accent-blue); font-weight: bold; }
 
@@ -252,18 +266,177 @@
             width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.75rem; text-align: left;
         }
         .resource-table th, .resource-table td {
-            border: 1px solid #333; padding: 8px 6px; line-height: 1.35;
+            border: 1px solid #d6c9bd; padding: 8px 6px; line-height: 1.35;
         }
-        .resource-table th { background: #1f1f2e; color: #ff85a2; font-weight: bold; }
-        .resource-table td { color: #ddd; }
+        .resource-table th { background: #f3e9e2; color: #5a3825; font-weight: bold; }
+        .resource-table td { color: #222; }
 
         .consent-btn {
-            width: 100%; padding: 12px; background: #222; border: 1px solid #444; color: #eee;
+            width: 100%; padding: 12px; background: #faf6f2; border: 1px solid #cdbfb3; color: #222;
             border-radius: 12px; font-size: 0.85rem; cursor: pointer; margin-bottom: 10px; text-align: left; transition: all 0.2s;
         }
         .consent-btn:hover, .consent-btn.active {
             background: #0052cc; border-color: #3399ff; color: white; font-weight: bold;
         }
+
+
+        /* ===== 前情提要：4 個鏡頭 ===== */
+        .story-scene.full { padding: 0; display: block; text-align: left; overflow: hidden; }
+        .s-fill { position: absolute; inset: 0; width: 100%; height: 100%; }
+        .s-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+        .s-grad { background: linear-gradient(160deg, #5b3a6e 0%, #2a3a6b 60%, #17203d 100%); }
+
+        /* 手指點擊 / 滑動 */
+        .touch {
+            position: absolute; width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 50%;
+            background: rgba(255,255,255,0.5); border: 2px solid rgba(255,255,255,0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.45); opacity: 0; pointer-events: none; z-index: 25;
+        }
+        .touch::after {
+            content: '👆'; position: absolute; left: 50%; top: 55%; transform: translateX(-42%);
+            font-size: 34px; line-height: 1; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+        }
+        .ripple {
+            position: absolute; width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 50%;
+            border: 3px solid #fff; opacity: 0; pointer-events: none; z-index: 24;
+        }
+
+        /* 鏡頭二：限時動態 + 點擊頭像 */
+        #scene-2 { background: #000; }
+        .s2-shade { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 26%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.55) 100%); }
+        .s2-top { position: absolute; top: 24px; left: 12px; right: 12px; display: flex; align-items: center; gap: 10px; color: #fff; z-index: 5; }
+        .s2-avatar { width: 46px; height: 46px; border-radius: 50%; padding: 2.5px; flex-shrink: 0; background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7); }
+        .s2-avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2px solid #000; background: #444; display: block; }
+        .s2-meta b { display: block; font-size: 0.82rem; }
+        .s2-meta span { font-size: 0.7rem; opacity: 0.85; }
+        .s2-sticker { position: absolute; left: 14px; top: 56%; z-index: 5; background: rgba(255,255,255,0.93); color: #111; padding: 5px 10px; border-radius: 8px; font-size: 0.78rem; font-weight: 700; transform: rotate(-4deg); }
+        .story-scene.active .s2-avatar { animation: ringPulse 1s ease-in-out infinite; }
+        .touch.t2 { left: 35px; top: 47px; }
+        .ripple.r2 { left: 35px; top: 47px; }
+        .story-scene.active .touch.t2 { animation: touchToAvatar 3s ease-in-out 1.2s both; }
+        .story-scene.active .ripple.r2 { animation: rippleBurst 3s ease-out 1.2s both; }
+        .story-scene.active .ripple.r2.b { animation: rippleBurst 3s ease-out 1.38s both; }
+        @keyframes ringPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(238,42,123,0.7); }
+            50% { transform: scale(1.08); box-shadow: 0 0 0 9px rgba(238,42,123,0); }
+        }
+        @keyframes touchToAvatar {
+            0% { opacity: 0; transform: translate(150px, 300px) scale(1); }
+            12% { opacity: 1; }
+            55% { opacity: 1; transform: translate(0,0) scale(1); }
+            66% { transform: translate(0,0) scale(0.8); }
+            78% { opacity: 1; transform: translate(0,0) scale(1); }
+            100% { opacity: 0; transform: translate(0,0) scale(1); }
+        }
+        @keyframes rippleBurst {
+            0%, 64% { opacity: 0; transform: scale(0.4); }
+            66% { opacity: 0.95; transform: scale(0.6); }
+            100% { opacity: 0; transform: scale(3.2); }
+        }
+
+        /* 鏡頭三：個人主頁 */
+        #scene-3 { background: #101012; color: #fff; }
+        .s3-col { position: absolute; inset: 24px 0 0 0; display: flex; flex-direction: column; }
+        .s3-bar { display: flex; justify-content: space-between; align-items: center; padding: 6px 14px; font-size: 0.8rem; font-weight: 700; }
+        .s3-head { display: flex; align-items: center; gap: 14px; padding: 4px 14px 0; }
+        .s3-avatar { width: 60px; height: 60px; border-radius: 50%; overflow: hidden; border: 1px solid #444; background: #333; flex-shrink: 0; }
+        .s3-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .s3-stats { flex: 1; display: flex; justify-content: space-around; text-align: center; font-size: 0.66rem; color: #b5b5b5; }
+        .s3-stats b { display: block; font-size: 0.88rem; color: #fff; }
+        .s3-bio { padding: 8px 14px 8px; font-size: 0.72rem; line-height: 1.4; color: #d0d0d0; }
+        .s3-bio .name { font-weight: 700; font-size: 0.82rem; color: #fff; }
+        .s3-bio .tag { display: inline-block; margin-left: 6px; padding: 0 6px; border-radius: 8px; background: #2a2a30; font-size: 0.66rem; color: #bbb; }
+        .s3-bio .dance { font-weight: 700; font-size: 0.8rem; color: #fff; margin-top: 2px; }
+        .s3-tabs { display: flex; border-top: 1px solid #2a2a2e; border-bottom: 1px solid #2a2a2e; text-align: center; font-size: 0.85rem; }
+        .s3-tabs span { flex: 1; padding: 4px 0; color: #777; }
+        .s3-tabs span.on { color: #fff; border-bottom: 2px solid #fff; }
+        .s3-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+        .s3-tile { position: relative; aspect-ratio: 1 / 0.72; background: linear-gradient(135deg, #4a3560, #26335c); overflow: hidden; }
+        .s3-tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+        .s3-notice {
+            margin: 9px 12px 0; padding: 7px 10px; border-radius: 10px; background: rgba(255,255,255,0.08);
+            border: 1px dashed rgba(255,255,255,0.35); font-size: 0.74rem; line-height: 1.35; color: #f0f0f0; text-align: center;
+        }
+        .story-scene.active .s3-tile { animation: tileIn 0.45s ease-out both; animation-delay: calc(0.25s + var(--i) * 0.11s); }
+        .story-scene.active .s3-notice { animation: noticeIn 0.6s ease-out 1.8s both, noticePulse 1.6s ease-in-out 2.5s infinite; }
+        @keyframes tileIn { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: none; } }
+        @keyframes noticeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+        @keyframes noticePulse { 0%, 100% { border-color: rgba(255,255,255,0.35); } 50% { border-color: rgba(255,133,162,0.95); } }
+
+        /* 鏡頭四：往下滑 → 雙擊愛心 */
+        #scene-4 { background: #101010; color: #f2f2f2; }
+        .s4-top { position: absolute; top: 0; left: 0; right: 0; height: 56px; z-index: 6; background: #101010; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 14px 8px; font-size: 0.8rem; font-weight: 700; }
+        .s4-scroller { position: absolute; top: 58px; left: 0; right: 0; }
+        .story-scene.active .s4-scroller { animation: scrollUp 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.5s both; }
+        @keyframes scrollUp { from { transform: translateY(0); } to { transform: translateY(-96px); } }
+        .s4-ghost { height: 96px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; opacity: 0.5; }
+        .s4-ghost div { position: relative; background: linear-gradient(135deg, #4a3560, #26335c); overflow: hidden; }
+        .s4-ghost img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .s4-post { padding: 12px 14px; }
+        .s4-hd { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 0.85rem; font-weight: 700; }
+        .s4-hd img { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; background: #444; }
+        .s4-hd small { font-weight: 400; color: #999; font-size: 0.72rem; }
+        .s4-tx { font-size: 0.82rem; line-height: 1.45; margin-bottom: 8px; }
+        .s4-media { position: relative; width: 100%; aspect-ratio: 1 / 0.82; border-radius: 10px; overflow: hidden; background: linear-gradient(135deg, #4a3560, #26335c); }
+        .s4-media > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+        .s4-metrics { display: flex; gap: 18px; align-items: center; font-size: 0.82rem; color: #bdbdbd; padding-top: 10px; }
+        .likebox { position: relative; display: inline-block; }
+        .likebox .like-on { position: absolute; left: 0; top: 0; white-space: nowrap; color: #ff3040; font-weight: 700; opacity: 0; }
+        .story-scene.active .likebox .like-on { animation: likeOn 0.5s ease 3.3s both; }
+        .story-scene.active .likebox .like-off { animation: likeOff 0.01s linear 3.3s both; }
+        @keyframes likeOn { from { opacity: 0; transform: scale(0.6); } 50% { opacity: 1; transform: scale(1.4); } to { opacity: 1; transform: scale(1); } }
+        @keyframes likeOff { to { opacity: 0; } }
+
+        .touch.t4 { left: 50%; top: 50%; }
+        .ripple.r4 { left: 50%; top: 50%; }
+        .touch.sw { left: 215px; top: 430px; }
+        .story-scene.active .touch.sw { animation: swipeUp 1.3s ease-in-out 0.3s both; }
+        .story-scene.active .touch.t4 { animation: touchDbl 2s ease-in-out 2s both; }
+        .story-scene.active .ripple.r4.a { animation: rippleTap 0.6s ease-out 2.8s both; }
+        .story-scene.active .ripple.r4.b { animation: rippleTap 0.6s ease-out 3.24s both; }
+        @keyframes swipeUp {
+            0% { opacity: 0; transform: translateY(50px); }
+            20% { opacity: 1; }
+            80% { opacity: 1; transform: translateY(-90px); }
+            100% { opacity: 0; transform: translateY(-110px); }
+        }
+        @keyframes touchDbl {
+            0% { opacity: 0; transform: translate(70px, 80px) scale(1); }
+            25% { opacity: 1; transform: translate(0,0) scale(1); }
+            40% { transform: translate(0,0) scale(0.78); }
+            50% { transform: translate(0,0) scale(1); }
+            62% { transform: translate(0,0) scale(0.78); }
+            72% { opacity: 1; transform: translate(0,0) scale(1); }
+            100% { opacity: 0; transform: translate(0,0) scale(1); }
+        }
+        @keyframes rippleTap {
+            0% { opacity: 0; transform: scale(0.5); }
+            1% { opacity: 0.9; }
+            100% { opacity: 0; transform: scale(2.6); }
+        }
+        .bigheart { position: absolute; left: 50%; top: 50%; font-size: 92px; line-height: 1; opacity: 0; z-index: 22; pointer-events: none; filter: drop-shadow(0 4px 14px rgba(255,48,64,0.6)); transform: translate(-50%,-50%) scale(0); }
+        .story-scene.active .bigheart { animation: bigHeart 1.2s ease-out 3.25s both; }
+        @keyframes bigHeart {
+            0% { opacity: 0; transform: translate(-50%,-50%) scale(0); }
+            1% { opacity: 1; }
+            30% { transform: translate(-50%,-50%) scale(1.3); }
+            50% { transform: translate(-50%,-50%) scale(1); }
+            80% { opacity: 1; transform: translate(-50%,-50%) scale(1.06); }
+            100% { opacity: 0; transform: translate(-50%,-50%) scale(1.25); }
+        }
+        .minihearts span { position: absolute; left: 50%; top: 58%; opacity: 0; z-index: 21; pointer-events: none; line-height: 1; }
+        .story-scene.active .minihearts span { animation: heartFloat 1.6s ease-out both; animation-delay: calc(3.3s + var(--d)); }
+        @keyframes heartFloat {
+            0% { opacity: 0; transform: translate(0, 0) scale(0.4); }
+            12% { opacity: 1; }
+            100% { opacity: 0; transform: translate(var(--x), -140px) scale(1.2); }
+        }
+
+        /* 視訊側錄影片：9:16 */
+        .video-wrap { width: min(260px, 100%); margin: 0 auto 12px; border-radius: 14px; overflow: hidden; border: 1px solid #333; background: #000; }
+        .video-tag { background: #e50914; color: #fff; font-size: 0.75rem; font-weight: 700; text-align: center; padding: 5px 8px; }
+        .video-916 { position: relative; width: 100%; aspect-ratio: 9 / 16; background: #000; }
+        .video-916 video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 
         .hidden { display: none !important; }
     </style>
@@ -299,25 +472,25 @@
 
         <!-- 頁面 0: 知情同意書 -->
         <div class="main-content" id="view-page0">
-            <div style="background:#1a1a24; border-radius:20px; padding:18px; border:1px solid #383850;">
-                <h3 style="color:#ff85a2; font-size:1.05rem; margin-bottom:10px;">親愛的同學，您好：</h3>
-                <p style="font-size:0.82rem; line-height:1.6; color:#ddd; margin-bottom:10px;">
+            <div style="background:#faf6f2; border-radius:20px; padding:18px; border:1px solid #e3d6ca;">
+                <h3 style="color:#5a3825; font-size:1.05rem; margin-bottom:10px;">親愛的同學，您好：</h3>
+                <p style="font-size:0.82rem; line-height:1.6; color:#222; margin-bottom:10px;">
                     非常感謝您撥空填寫這份問卷，這是一份關於北部地區高中職生面對網路性騷擾之情緒維度與旁觀者行為傾向之關聯的研究問卷。問卷分為五個部分，預計填寫時間為 5-10 分鐘。每題答案均無對錯或好壞之分，請您依據真實的想法與感覺問答。填寫本問卷時，每一題只能選擇一個答案，請仔細閱讀各部分說明後，認真作答。
                 </p>
-                <p style="font-size:0.82rem; line-height:1.6; color:#ddd; margin-bottom:10px;">
+                <p style="font-size:0.82rem; line-height:1.6; color:#222; margin-bottom:10px;">
                     本問卷採不記名方式作答，問卷結果僅供學術研究之用，您的答題內容我們將謹守保密規定，因此請您安心作答。若填答過程中，有任何的不適，您可以自行決定暫停或停止作答。如填寫完成後有產生心理不適，請您與校內導師、輔導處或信任的大人進行求助。
                 </p>
-                <p style="font-size:0.82rem; line-height:1.6; color:#ddd; margin-bottom:14px;">
+                <p style="font-size:0.82rem; line-height:1.6; color:#222; margin-bottom:14px;">
                     非常感謝您的協助與合作！您的填答將為本研究帶來莫大的幫助！
                 </p>
                 
-                <div style="font-size:0.78rem; color:#aaa; margin-bottom:16px; border-top:1px solid #333; padding-top:8px;">
+                <div style="font-size:0.78rem; color:#555; margin-bottom:16px; border-top:1px solid #e3d6ca; padding-top:8px;">
                     國立臺北教育大學 課程與教學科技傳播科技研究所<br>
                     指導教授 崔夢萍 教授<br>
                     碩士生 魏孝軒 敬上
                 </div>
 
-                <div style="font-size:0.85rem; font-weight:bold; color:#fff; margin-bottom:10px;">如果您已充分理解上述說明，請勾選您參與本研究的意願：</div>
+                <div style="font-size:0.85rem; font-weight:bold; color:#111; margin-bottom:10px;">如果您已充分理解上述說明，請勾選您參與本研究的意願：</div>
 
                 <button type="button" class="consent-btn" id="btn-consent-yes">
                     ☑ 我已閱讀並理解上述說明，同意參與本研究 (開始填答)
@@ -330,9 +503,9 @@
 
         <!-- 拒絕參與離場頁 -->
         <div class="main-content hidden" id="view-decline">
-            <div style="background:#1a1a24; border-radius:20px; padding:25px; border:1px solid #383850; text-align:center; margin-top:40px;">
-                <h3 style="color:#aaa; font-size:1.1rem; margin-bottom:12px;">已結束問卷</h3>
-                <p style="font-size:0.88rem; line-height:1.6; color:#888;">
+            <div style="background:#faf6f2; border-radius:20px; padding:25px; border:1px solid #e3d6ca; text-align:center; margin-top:40px;">
+                <h3 style="color:#555; font-size:1.1rem; margin-bottom:12px;">已結束問卷</h3>
+                <p style="font-size:0.88rem; line-height:1.6; color:#666;">
                     您已選擇不同意參與本研究。感謝您的時間，您可以直接關閉此網頁視窗。
                 </p>
             </div>
@@ -340,7 +513,7 @@
 
         <!-- 頁面 1: 基本資料 -->
         <div class="main-content hidden" id="view-page1">
-            <h3 style="color:#ff85a2; font-size:1rem; margin-bottom:16px;">第一部分：基本個人資料</h3>
+            <h3 style="color:#5a3825; font-size:1rem; margin-bottom:16px;">第一部分：基本個人資料</h3>
             
             <div class="form-group">
                 <label class="form-label">1. 生理性別：</label>
@@ -400,77 +573,192 @@
                     <div class="story-progress-segment"><div class="story-progress-fill" id="p-fill-4"></div></div>
                 </div>
 
-                <!-- 🎬 鏡頭 1: 第三人稱視角 (華人女高中生深夜躺床滑手機) -->
-                <div class="story-scene active" id="scene-1" style="background: radial-gradient(circle at center, #1b1b2d 0%, #05050a 100%);">
-                    <svg viewBox="0 0 300 300" style="width:220px; height:220px;">
-                        <path d="M 40 220 C 80 180, 180 180, 260 220 L 260 260 L 40 260 Z" fill="#2d3748"/>
-                        <circle cx="90" cy="170" r="28" fill="#f2b6b6"/>
-                        <path d="M 65 170 Q 90 140 115 170 Q 120 185 85 185 Z" fill="#222"/>
-                        <rect x="140" y="165" width="45" height="80" rx="6" fill="#111" stroke="#0095f6" stroke-width="2"/>
-                        <circle cx="162" cy="185" r="8" fill="#3399ff" opacity="0.8"/>
-                        <path d="M 115 200 C 130 195, 145 190, 155 185" stroke="#f2b6b6" stroke-width="8" stroke-linecap="round"/>
-                    </svg>
+                <!-- 🎬 鏡頭 1：第三人稱視角（華人女高中生深夜躺床側身滑手機） -->
+                <div class="story-scene full" id="scene-1" style="background:#06080d;">
+                    <svg class="s-fill" viewBox="0 0 332 590" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="s1wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0c1019"/><stop offset="1" stop-color="#06080d"/></linearGradient>
+    <linearGradient id="s1moon" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7a91d6" stop-opacity=".20"/><stop offset="1" stop-color="#7a91d6" stop-opacity="0"/></linearGradient>
+    <radialGradient id="s1glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#a9d6ff" stop-opacity=".9"/>
+      <stop offset=".35" stop-color="#4a90e2" stop-opacity=".40"/>
+      <stop offset="1" stop-color="#2a5fb0" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="s1vig" cx="50%" cy="52%" r="78%"><stop offset=".42" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".8"/></radialGradient>
+    <linearGradient id="s1screen" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f2f9ff"/><stop offset="1" stop-color="#86bdff"/></linearGradient>
+    <linearGradient id="s1blanket" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3b4a72"/><stop offset=".5" stop-color="#2a3556"/><stop offset="1" stop-color="#1c2440"/></linearGradient>
+  </defs>
+
+  <rect width="332" height="590" fill="url(#s1wall)"/>
+
+  <!-- 窗戶與微弱月光 -->
+  <rect x="22" y="64" width="86" height="140" rx="3" fill="#0f1628" stroke="#1d2744" stroke-width="3"/>
+  <path d="M65 64 V204 M22 134 H108" stroke="#1d2744" stroke-width="3"/>
+  <polygon points="22,64 108,64 200,360 70,360" fill="url(#s1moon)"/>
+
+  <!-- 掛在牆上的學校制服 -->
+  <g transform="translate(132,86)">
+    <line x1="20" y1="-14" x2="20" y2="-2" stroke="#2c3652" stroke-width="2"/>
+    <path d="M8 -2 L20 -8 L32 -2" fill="none" stroke="#2c3652" stroke-width="2"/>
+    <path d="M0 6 L20 -2 L40 6 L58 20 L50 36 L40 30 L40 92 L0 92 L0 30 L-10 36 L-18 20 Z" fill="#141b2d"/>
+    <path d="M10 -1 L20 14 L30 -1" fill="none" stroke="#2f3a58" stroke-width="2"/>
+    <path d="M20 14 L16 24 L20 56 L24 24 Z" fill="#5b2431"/>
+  </g>
+
+  <!-- 置物架與電子鐘 -->
+  <rect x="204" y="190" width="108" height="5" rx="2" fill="#1a2033"/>
+  <rect x="220" y="164" width="76" height="26" rx="4" fill="#0b0e17" stroke="#1c2336"/>
+  <text x="258" y="183" text-anchor="middle" font-family="monospace" font-size="17" fill="#ff5a5a" opacity=".9">01:47</text>
+
+  <!-- 床 -->
+  <rect x="0" y="414" width="332" height="176" fill="#121828"/>
+  <rect x="0" y="406" width="332" height="12" fill="#1a2236"/>
+
+  <!-- 枕頭 -->
+  <rect x="14" y="346" width="136" height="66" rx="28" fill="#232c45"/>
+
+  <!-- 散在枕頭上的長髮 -->
+  <ellipse cx="66" cy="384" rx="58" ry="24" fill="#0a0a0f"/>
+
+  <!-- 側臥的身體（蓋著棉被） -->
+  <path d="M104 404 C104 366 138 372 176 374 L332 384 L332 470 L40 470 L40 440 C70 436 100 428 104 404 Z" fill="url(#s1blanket)">
+    <animateTransform attributeName="transform" type="translate" values="0 0;0 -1.6;0 0" dur="4.2s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- 頭與臉（面向右側的手機） -->
+  <circle cx="116" cy="352" r="35" fill="#d7a48e"/>
+  <circle cx="150" cy="357" r="4.5" fill="#d7a48e"/>
+  <ellipse cx="134" cy="349" rx="3.2" ry="2.4" fill="#1a1013"/>
+  <circle cx="135" cy="348.3" r="1" fill="#fff" opacity=".85"/>
+  <path d="M126 341 Q134 337 142 341" stroke="#2a1a16" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+  <path d="M140 368 Q147 370 151 366" stroke="#9b5b55" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- 頭髮 -->
+  <path d="M80 356 C72 308 118 296 146 322 C124 322 112 336 108 358 C104 378 86 380 80 356 Z" fill="#0c0c12"/>
+  <path d="M146 322 C150 330 148 336 144 340 C140 332 140 326 146 322 Z" fill="#0c0c12"/>
+  <ellipse cx="96" cy="372" rx="22" ry="14" fill="#0c0c12"/>
+
+  <!-- 手臂（睡衣袖子） -->
+  <path d="M120 402 C150 404 184 392 194 356" stroke="#59658a" stroke-width="17" stroke-linecap="round" fill="none"/>
+  <circle cx="196" cy="346" r="10" fill="#d7a48e"/>
+
+  <!-- 手機 -->
+  <g transform="rotate(-6 196 326)">
+    <rect x="188" y="298" width="24" height="52" rx="5" fill="#0d121c" stroke="#2c3a5a" stroke-width="1.5"/>
+    <polygon points="181,303 189,300 189,347 181,350" fill="url(#s1screen)">
+      <animate attributeName="opacity" values=".8;1;.85;1;.8" dur="2.4s" repeatCount="indefinite"/>
+    </polygon>
+  </g>
+
+  <!-- 大拇指輕微滑動 -->
+  <ellipse cx="214" cy="332" rx="5" ry="10" fill="#d7a48e" transform="rotate(-8 214 332)">
+    <animateTransform attributeName="transform" type="translate" values="0 8;0 -10;0 8" dur="1.5s" repeatCount="indefinite" additive="sum"/>
+  </ellipse>
+
+  <!-- 手機螢幕映照的微弱光芒（落在臉與棉被上） -->
+  <circle cx="176" cy="332" r="138" fill="url(#s1glow)" style="mix-blend-mode:screen">
+    <animate attributeName="opacity" values=".7;1;.78;.95;.7" dur="3s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- 灰塵微光 -->
+  <g fill="#9fc7ff" opacity=".55">
+    <circle cx="210" cy="280" r="1.2"><animate attributeName="opacity" values="0;.8;0" dur="3.4s" repeatCount="indefinite"/></circle>
+    <circle cx="238" cy="304" r="1"><animate attributeName="opacity" values="0;.7;0" dur="2.7s" begin=".8s" repeatCount="indefinite"/></circle>
+    <circle cx="168" cy="262" r="1.1"><animate attributeName="opacity" values="0;.7;0" dur="3.9s" begin="1.4s" repeatCount="indefinite"/></circle>
+  </g>
+
+  <rect width="332" height="590" fill="url(#s1vig)"/>
+</svg>
                 </div>
 
-                <!-- 🎬 鏡頭 2: 第一人稱視角 (跳出小美 Bra Top 熱舞限時動態 ➔ 自動點擊頭像) -->
-                <div class="story-scene" id="scene-2" style="background: #111;">
-                    <div style="background:#181820; border-radius:18px; border:1px solid #333; width:90%; padding:14px; position:relative;">
-                        <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
-                            <div style="position:relative;">
-                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" style="width:48px; height:48px; border-radius:50%; border:2px solid #ff3040; padding:2px;" alt="小美">
-                                <div style="position:absolute; top:-2px; right:-2px; background:#0095f6; color:white; border-radius:50%; width:18px; height:18px; font-size:10px; display:flex; justify-content:center; align-items:center;">👆</div>
-                            </div>
-                            <div style="text-align:left;">
-                                <div style="font-weight:bold; font-size:0.88rem; color:#fff;">小美 @mei_dance0312</div>
-                                <div style="font-size:0.72rem; color:#ff85a2;">剛發佈了一則新限時動態 🔴</div>
+                <!-- 🎬 鏡頭 2：第一人稱視角（9:16 手機畫面）➔ 小美熱舞限時動態，自動點擊圓形頭像 -->
+                <div class="story-scene full" id="scene-2">
+                    <div class="s-fill s-grad"></div>
+                    <img class="s-img" src="https://images.unsplash.com/photo-1547153760-18fc86324498?w=700&auto=format&fit=crop&q=80" alt="小美熱舞限時動態" onerror="this.style.display='none'">
+                    <div class="s2-shade"></div>
+                    <div class="s2-top">
+                        <div class="s2-avatar" id="s2-avatar"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="小美" onerror="this.style.visibility='hidden'"></div>
+                        <div class="s2-meta"><b>mei_dance0312</b><span>剛剛 · 限時動態</span></div>
+                    </div>
+                    <div class="s2-sticker">💃 熱舞社練習紀錄</div>
+                    <span class="ripple r2"></span><span class="ripple r2 b"></span>
+                    <div class="touch t2"></div>
+                </div>
+
+                <!-- 🎬 鏡頭 3：小美個人主頁（九宮格＋簡介＋標記已清空提示） -->
+                <div class="story-scene full" id="scene-3">
+                    <div class="s3-col">
+                        <div class="s3-bar"><span>‹</span><span>mei_dance0312</span><span>⋯</span></div>
+                        <div class="s3-head">
+                            <div class="s3-avatar"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="小美" onerror="this.style.visibility='hidden'"></div>
+                            <div class="s3-stats">
+                                <div><b>86</b>貼文</div>
+                                <div><b>1,284</b>粉絲</div>
+                                <div><b>312</b>追蹤中</div>
                             </div>
                         </div>
-                        <div style="background:#222; border-radius:12px; height:180px; display:flex; justify-content:center; align-items:center; overflow:hidden; position:relative;">
-                            <img src="https://images.unsplash.com/photo-1547153760-18fc86324498?w=400&auto=format&fit=crop&q=80" style="width:100%; height:100%; object-fit:cover; opacity:0.85;" alt="Bra Top 跳舞照片">
-                            <div style="position:absolute; bottom:10px; left:10px; background:rgba(0,0,0,0.7); padding:4px 8px; border-radius:6px; font-size:0.75rem; color:#fff;">💃 熱舞社練習紀錄</div>
+                        <div class="s3-bio">
+                            <div><span class="name">小美</span><span class="tag">高一</span></div>
+                            <div class="dance">Dance is life 💃🏻</div>
+                            <div>熱舞社 ｜ 練舞日常 🎵</div>
                         </div>
+                        <div class="s3-tabs"><span class="on">▦</span><span>▶</span><span>🏷️</span></div>
+                        <div class="s3-grid">
+                            <div class="s3-tile" style="--i:0"><img src="https://images.unsplash.com/photo-1547153760-18fc86324498?w=200&auto=format&fit=crop&q=80" style="object-position:center;" alt="熱舞社排練側拍" onerror="this.style.display='none'"></div>
+                            <div class="s3-tile" style="--i:1"><img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=200&auto=format&fit=crop&q=80" style="object-position:center;" alt="熱舞社排練側拍" onerror="this.style.display='none'"></div>
+                            <div class="s3-tile" style="--i:2"><img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=200&auto=format&fit=crop&q=80" style="object-position:center;" alt="熱舞社排練側拍" onerror="this.style.display='none'"></div>
+                            <div class="s3-tile" style="--i:3"><img src="https://images.unsplash.com/photo-1535525153412-5a42439e2b0d?w=200&auto=format&fit=crop&q=80" style="object-position:center;" alt="熱舞社排練側拍" onerror="this.style.display='none'"></div>
+                            <div class="s3-tile" style="--i:4"><img src="https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=200&auto=format&fit=crop&q=80" style="object-position:center;" alt="熱舞社排練側拍" onerror="this.style.display='none'"></div>
+                            <div class="s3-tile" style="--i:5"><img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=200&auto=format&fit=crop&q=80" style="object-position:center;" alt="熱舞社排練側拍" onerror="this.style.display='none'"></div>
+                            <div class="s3-tile" style="--i:6"><img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=200&auto=format&fit=crop&q=80" style="object-position:30% 20%;" alt="熱舞社排練側拍" onerror="this.style.display='none'"></div>
+                            <div class="s3-tile" style="--i:7"><img src="https://images.unsplash.com/photo-1547153760-18fc86324498?w=200&auto=format&fit=crop&q=80" style="object-position:70% 30%;" alt="熱舞社排練側拍" onerror="this.style.display='none'"></div>
+                            <div class="s3-tile" style="--i:8"><img src="https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=200&auto=format&fit=crop&q=80" style="object-position:20% 60%;" alt="熱舞社排練側拍" onerror="this.style.display='none'"></div>
+                        </div>
+                        <div class="s3-notice">🏷️ 過往與阿傑學長相關的標記貼文均已清空</div>
                     </div>
                 </div>
 
-                <!-- 🎬 鏡頭 3: 切換小美個人主頁 -->
-                <div class="story-scene" id="scene-3" style="background: #0b0b10;">
-                    <div style="width:95%; background:#161622; padding:14px; border-radius:16px; border:1px solid #2a2a3a; text-align:left;">
-                        <div style="display:flex; gap:12px; align-items:center;">
-                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" style="width:52px; height:52px; border-radius:50%; border:1px solid #444;" alt="小美">
-                            <div>
-                                <div style="font-weight:bold; color:#fff; font-size:0.92rem;">小美 (高一)</div>
-                                <div style="font-size:0.75rem; color:#aaa;">@mei_dance0312</div>
+                <!-- 🎬 鏡頭 4：往下滑看貼文 ➔ 快點兩下按愛心 ➔ 亮起「查看留言區」按鈕 -->
+                <div class="story-scene full" id="scene-4">
+                    <div class="s4-top"><span>‹ 貼文</span><span>⋯</span></div>
+                    <div class="s4-scroller">
+                        <div class="s4-ghost">
+                            <div><img src="https://images.unsplash.com/photo-1535525153412-5a42439e2b0d?w=200&auto=format&fit=crop&q=80" alt="" onerror="this.style.display='none'"></div>
+                            <div><img src="https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=200&auto=format&fit=crop&q=80" alt="" onerror="this.style.display='none'"></div>
+                            <div><img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=200&auto=format&fit=crop&q=80" alt="" onerror="this.style.display='none'"></div>
+                        </div>
+                        <div class="s4-post">
+                            <div class="s4-hd"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="小美" onerror="this.style.visibility='hidden'"><span>小美 <small>@mei_dance0312 · 剛剛</small></span></div>
+                            <div class="s4-tx">社團成發影片觀看數突破 20 萬了！真的太感謝大家的支持✨💪這兩個月大家辛苦了！</div>
+                            <div class="s4-media">
+                                <img src="https://images.unsplash.com/photo-1547153760-18fc86324498?w=600&auto=format&fit=crop&q=80" alt="成發照片" onerror="this.style.display='none'">
+                                <span class="ripple r4 a"></span><span class="ripple r4 b"></span>
+                                <div class="touch t4"></div>
+                                <div class="bigheart">❤️</div>
+                                <div class="minihearts">
+                                <span style="--x:-75px; --d:0.0s; font-size:22px;">❤️</span>
+                                <span style="--x:-48px; --d:0.04s; font-size:26px;">❤️</span>
+                                <span style="--x:-26px; --d:0.09s; font-size:14px;">❤️</span>
+                                <span style="--x:-8px; --d:0.14s; font-size:22px;">❤️</span>
+                                <span style="--x:10px; --d:0.18s; font-size:18px;">❤️</span>
+                                <span style="--x:28px; --d:0.22s; font-size:14px;">❤️</span>
+                                <span style="--x:50px; --d:0.27s; font-size:26px;">❤️</span>
+                                <span style="--x:76px; --d:0.32s; font-size:18px;">❤️</span>
+                                <span style="--x:-60px; --d:0.36s; font-size:26px;">❤️</span>
+                                <span style="--x:-34px; --d:0.4s; font-size:14px;">❤️</span>
+                                <span style="--x:16px; --d:0.45s; font-size:14px;">❤️</span>
+                                <span style="--x:38px; --d:0.49s; font-size:14px;">❤️</span>
+                                <span style="--x:62px; --d:0.54s; font-size:14px;">❤️</span>
+                                <span style="--x:-16px; --d:0.58s; font-size:22px;">❤️</span>
+                                </div>
+                            </div>
+                            <div class="s4-metrics">
+                                <span class="likebox"><span class="like-off">🤍 152</span><span class="like-on">❤️ 153</span></span>
+                                <span>💬 8</span><span>🔁 12</span><span>✈️</span>
                             </div>
                         </div>
-                        <div style="font-size:0.85rem; color:#0095f6; font-weight:bold; margin-top:8px;">Dance is life 💃🏻</div>
-                        <div style="font-size:0.72rem; color:#888; margin-top:2px;">［已清空過往與高二阿傑學長的所有標記貼文］</div>
-
-                        <div class="grid-3x3">
-                            <div class="grid-3x3-item"><img src="https://images.unsplash.com/photo-1547153760-18fc86324498?w=150&auto=format&fit=crop&q=80"></div>
-                            <div class="grid-3x3-item"><img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=150&auto=format&fit=crop&q=80"></div>
-                            <div class="grid-3x3-item"><img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=150&auto=format&fit=crop&q=80"></div>
-                            <div class="grid-3x3-item"><img src="https://images.unsplash.com/photo-1535525153412-5a42439e2b0d?w=150&auto=format&fit=crop&q=80"></div>
-                            <div class="grid-3x3-item"><img src="https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=150&auto=format&fit=crop&q=80"></div>
-                            <div class="grid-3x3-item"><img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=150&auto=format&fit=crop&q=80"></div>
-                        </div>
                     </div>
-                </div>
-
-                <!-- 🎬 鏡頭 4: 往下滑動點讚 -->
-                <div class="story-scene" id="scene-4" style="background: #121212;">
-                    <div style="background:#1c1c24; border-radius:16px; border:1px solid #333; width:92%; padding:14px; text-align:left;">
-                        <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
-                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" style="width:32px; height:32px; border-radius:50%;" alt="小美">
-                            <span style="font-size:0.85rem; font-weight:bold;">小美</span>
-                        </div>
-                        <div style="font-size:0.82rem; line-height:1.4; color:#ddd; margin-bottom:8px;">
-                            社團成發影片觀看數突破 20 萬了！真的太感謝大家的支持✨💪這兩個月大家辛苦了！
-                        </div>
-                        <div style="display:flex; align-items:center; gap:12px; font-size:0.85rem; color:#ff85a2; font-weight:bold; background:#111; padding:8px; border-radius:8px;">
-                            <span>❤️ 已為小美點讚！</span>
-                            <span style="color:#aaa; font-weight:normal;">💬 8 則留言...</span>
-                        </div>
-                    </div>
+                    <div class="touch sw"></div>
                 </div>
 
                 <!-- 影音字幕導覽框 -->
@@ -512,7 +800,7 @@
                     <span>🔁 12 次轉發</span>
                 </div>
 
-                <button class="btn-action btn-highlight" id="btn-unlock-1">
+                <button class="btn-action btn-highlight hidden" id="btn-unlock-1">
                     💬 查看熱門留言 (8 則回應)
                 </button>
 
@@ -545,9 +833,11 @@
                 </div>
                 <div class="post-body">當初跟我視訊時不是展現得很熱情嗎？平時練舞還故意放大身材，私底下根本就是另一種人。［附視訊側錄動態影像］</div>
                 
-                <div class="media-box" style="border: 1px solid #333; position: relative;">
-                    <div style="position:absolute; top:10px; right:10px; background:#e50914; color:white; font-size:0.75rem; padding:4px 8px; border-radius:6px; font-weight:bold; z-index:10; box-shadow:0 2px 8px rgba(0,0,0,0.5);">⚠️ 18禁私密影像</div>
-                    <video src="input_file_0.mp4" controls autoplay loop muted playsinline style="width:100%; max-height:280px; object-fit:cover; display:block; border-radius:14px;"></video>
+                <div class="video-wrap">
+                    <div class="video-tag">⚠️ 18禁私密影像</div>
+                    <div class="video-916">
+                        <video src="assets/line-video-call.mp4" poster="assets/line-video-call-poster.jpg" controls autoplay loop muted playsinline preload="auto"></video>
+                    </div>
                 </div>
 
                 <div class="threads-metrics">
@@ -630,14 +920,14 @@
 
         <!-- 頁面 5: 10x10 情緒儀表板 -->
         <div class="main-content hidden" id="view-meter" style="display:flex; flex-direction:column; align-items:center;">
-            <h3 style="color:#fff; font-size:0.95rem; margin-top:10px; text-align:center; line-height:1.4;">
+            <h3 style="color:#5a3825; font-size:0.95rem; margin-top:10px; text-align:center; line-height:1.4;">
                 目睹剛才情境後，請點選您當下的情緒感受<br>
-                <span style="color:#ff85a2; font-size:0.82rem;">（至多點選 5 個格子）</span>
+                <span style="color:#8a5a3c; font-size:0.82rem;">（至多點選 5 個格子）</span>
             </h3>
 
             <div class="grid-10x10" id="mood-grid"></div>
 
-            <div style="font-size:0.8rem; color:#aaa;" id="selected-count-text">已選擇：0 / 5 個格子</div>
+            <div style="font-size:0.8rem; color:#555;" id="selected-count-text">已選擇：0 / 5 個格子</div>
 
             <button class="btn-action btn-highlight" id="btn-to-s1" style="display:none; background:var(--accent-blue); margin-top:12px;">
                 確認情緒選擇，進入心理評估 ➔
@@ -646,7 +936,7 @@
 
         <!-- 頁面 6-1: 責任感量表 -->
         <div class="main-content hidden" id="view-s1">
-            <h3 style="color:#ff85a2; font-size:1rem; margin-bottom:12px;">第二部分 (1/3)：責任感量表</h3>
+            <h3 style="color:#5a3825; font-size:1rem; margin-bottom:12px;">第二部分 (1/3)：責任感量表</h3>
             
             <div class="survey-instruction">
                 <strong>填答說明：</strong> 本問卷旨在瞭解您觀看完網路性騷擾情境後，對於「個人責任」的主觀感受。請仔細閱讀每一個題項，在最符合您情況的選項空格內劃記。答案無關對錯，請安心填答。
@@ -714,7 +1004,7 @@
 
         <!-- 頁面 6-2: 挺身自我效能量表 -->
         <div class="main-content hidden" id="view-s2">
-            <h3 style="color:#ff85a2; font-size:1rem; margin-bottom:12px;">第二部分 (2/3)：挺身自我效能量表</h3>
+            <h3 style="color:#5a3825; font-size:1rem; margin-bottom:12px;">第二部分 (2/3)：挺身自我效能量表</h3>
             
             <div class="survey-instruction">
                 <strong>填答說明：</strong> 本問卷旨在瞭解您在面對類似剛才的網路性騷擾事件時，對於「自己是否有能力採取行動」的信心程度。請仔細閱讀每一個題項，在最符合您情況的選項空格內劃記。答案無關對錯，請安心填答。
@@ -782,7 +1072,7 @@
 
         <!-- 頁面 6-3: 旁觀者行為傾向量表 -->
         <div class="main-content hidden" id="view-s3">
-            <h3 style="color:#ff85a2; font-size:1rem; margin-bottom:12px;">第二部分 (3/3)：旁觀者行為傾向量表</h3>
+            <h3 style="color:#5a3825; font-size:1rem; margin-bottom:12px;">第二部分 (3/3)：旁觀者行為傾向量表</h3>
             
             <div class="survey-instruction">
                 <strong>填答說明：</strong> 本問卷旨在瞭解若您日常生活中使用社群媒體（如 IG、Threads、Discord）時，遇到類似剛才的網路性騷擾事件，您採取以下行為的可能性。請仔細閱讀每一個題項，在最符合您情況的選項空格內劃記。答案無關對錯，請安心填答。
@@ -799,13 +1089,13 @@
 
         <!-- 頁面 7: 關懷提醒與心理支持資源 -->
         <div class="main-content hidden" id="view-finish">
-            <div style="background:#1a1a24; border-radius:20px; padding:18px; border:1px solid #383850; text-align:left;">
-                <h3 style="color:#ff85a2; font-size:1.05rem; margin-bottom:12px; text-align:center;">非常感謝您耐心完成本研究問卷！</h3>
+            <div style="background:#faf6f2; border-radius:20px; padding:18px; border:1px solid #e3d6ca; text-align:left;">
+                <h3 style="color:#5a3825; font-size:1.05rem; margin-bottom:12px; text-align:center;">非常感謝您耐心完成本研究問卷！</h3>
                 
-                <p style="font-size:0.8rem; line-height:1.6; color:#ddd; margin-bottom:12px;">
+                <p style="font-size:0.8rem; line-height:1.6; color:#222; margin-bottom:12px;">
                     由於本問卷涉及「網路性騷擾情境」之體驗與閱讀，若您在觀看或填答過程中感到任何心理不適、焦慮、困惑，或情緒受到影響，這是正常的心理反應。
                 </p>
-                <p style="font-size:0.8rem; line-height:1.6; color:#ddd; margin-bottom:12px;">
+                <p style="font-size:0.8rem; line-height:1.6; color:#222; margin-bottom:12px;">
                     若您或您身邊的同學需要心理支持、專業諮詢，或遇到了相關的網路困擾需要尋求協助，隨時可以透過以下保密且免費的官方管道尋求即時幫助：
                 </p>
 
@@ -846,11 +1136,11 @@
                     </tbody>
                 </table>
 
-                <p style="font-size:0.82rem; color:#fff; font-weight:bold; text-align:center; margin-top:14px;">
+                <p style="font-size:0.82rem; color:#111; font-weight:bold; text-align:center; margin-top:14px;">
                     再次感謝您的參與！請點擊下方「提交」完成問卷。<br>祝您學習順利、身心健康！
                 </p>
 
-                <div id="submit-error" class="hidden" style="margin-top:14px; padding:10px 12px; border-radius:10px; background:#2a1215; border:1px solid var(--accent-red); color:#ffb3ba; font-size:0.8rem; line-height:1.5;"></div>
+                <div id="submit-error" class="hidden" style="margin-top:14px; padding:10px 12px; border-radius:10px; background:#fdecee; border:1px solid #d93a49; color:#9b1c2a; font-size:0.8rem; line-height:1.5;"></div>
 
                 <button class="btn-action btn-highlight" id="btn-submit-final" style="margin-top:16px; background:var(--accent-green);">
                     ✅ 提交問卷，完成離場
@@ -860,10 +1150,10 @@
 
         <!-- 最終提交成功頁面 -->
         <div class="main-content hidden" id="view-submitted">
-            <div style="background:#1a1a24; border-radius:20px; padding:30px; border:1px solid #383850; text-align:center; margin-top:50px;">
+            <div style="background:#faf6f2; border-radius:20px; padding:30px; border:1px solid #e3d6ca; text-align:center; margin-top:50px;">
                 <div style="font-size:3.5rem; margin-bottom:15px;">🎉</div>
                 <h3 style="color:#27ae60; font-size:1.2rem; margin-bottom:12px;">問卷已成功提交！</h3>
-                <p style="font-size:0.88rem; line-height:1.6; color:#aaa;">
+                <p style="font-size:0.88rem; line-height:1.6; color:#555;">
                     您的答題資料已安全傳送。<br>您可以安心關閉此視窗，再次感謝您的協助與貢獻！
                 </p>
             </div>
@@ -1030,14 +1320,19 @@
             startStoryAutoPlay();
         };
 
-        // 4 鏡頭自動播放計時器
+        // 4 鏡頭自動播放計時器（每個鏡頭時長不同，單位：毫秒）
+        const SCENE_MS = [5500, 6000, 6000, 6500];
+        let storyRaf = null;
+
         function startStoryAutoPlay() {
             storyIndex = 1;
             runScene(storyIndex);
         }
 
         function runScene(idx) {
+            cancelAnimationFrame(storyRaf);
             if (idx > 4) {
+                // 鏡頭四結束：亮起「查看留言區」引導按鈕
                 document.getElementById('btn-p2-next').classList.remove('hidden');
                 return;
             }
@@ -1047,37 +1342,44 @@
             document.getElementById('story-caption-text').innerText = storyCaptions[idx - 1];
 
             const fillElem = document.getElementById(`p-fill-${idx}`);
-            let fillWidth = 0;
-            const interval = setInterval(() => {
-                fillWidth += 4;
-                fillElem.style.width = fillWidth + '%';
-                if (fillWidth >= 100) {
-                    clearInterval(interval);
-                    runScene(idx + 1);
-                }
-            }, 100);
+            const duration = SCENE_MS[idx - 1];
+            const t0 = performance.now();
+            const tick = (now) => {
+                const p = Math.min(1, (now - t0) / duration);
+                fillElem.style.width = (p * 100) + '%';
+                if (p < 1) storyRaf = requestAnimationFrame(tick);
+                else runScene(idx + 1);
+            };
+            storyRaf = requestAnimationFrame(tick);
         }
 
-        // 頁面 2 ➔ 頁面 3
-        document.getElementById('btn-p2-next').onclick = function() {
-            document.getElementById('view-page2').classList.add('hidden');
-            document.getElementById('view-social').classList.remove('hidden');
-        };
-
-        // 第一幕：點選「查看熱門留言」，留言一則一則慢慢跳出
-        document.getElementById('btn-unlock-1').onclick = function() {
+        // 留言區：一則一則慢慢跳出，並自動捲動跟隨
+        function revealComments1() {
+            document.getElementById('btn-unlock-1').style.display = 'none';
             document.getElementById('comments-1').classList.remove('hidden');
-            this.style.display = 'none';
 
             for (let i = 1; i <= 8; i++) {
                 setTimeout(() => {
                     const comment = document.getElementById(`c1-${i}`);
-                    if (comment) comment.classList.remove('hidden');
+                    if (comment) {
+                        comment.classList.remove('hidden');
+                        comment.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
                     if (i === 8) {
-                        document.getElementById('btn-to-stage2').style.display = 'flex';
+                        const next = document.getElementById('btn-to-stage2');
+                        next.style.display = 'flex';
+                        next.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                     }
                 }, i * 800); // 每 0.8 秒彈出一則留言
             }
+        }
+
+        // 頁面 2 ➔ 頁面 3：點擊後直接展開該篇貼文的留言區
+        document.getElementById('btn-p2-next').onclick = function() {
+            cancelAnimationFrame(storyRaf);
+            document.getElementById('view-page2').classList.add('hidden');
+            document.getElementById('view-social').classList.remove('hidden');
+            revealComments1();
         };
 
         // 第一幕 ➔ 第二幕
@@ -1086,15 +1388,17 @@
                 document.getElementById('stage-1').classList.add('hidden');
                 document.getElementById('stage-2').classList.remove('hidden');
 
+                // 愛心／留言／轉發數快速跳動（每 0.2 秒更新一次）
                 let likes = 3420, comments = 89, reposts = 1280;
-                setInterval(() => {
-                    likes += Math.floor(Math.random() * 4) + 1;
-                    comments += Math.floor(Math.random() * 2);
-                    reposts += Math.floor(Math.random() * 3) + 1;
+                clearInterval(window.metricsTimer);
+                window.metricsTimer = setInterval(() => {
+                    likes += Math.floor(Math.random() * 20) + 8;
+                    comments += Math.floor(Math.random() * 3);
+                    reposts += Math.floor(Math.random() * 8) + 3;
                     document.getElementById('m-likes').innerText = `❤️ ${likes.toLocaleString()}`;
-                    document.getElementById('m-comments').innerText = `💬 ${comments} 則留言`;
+                    document.getElementById('m-comments').innerText = `💬 ${comments.toLocaleString()} 則留言`;
                     document.getElementById('m-reposts').innerText = `🔁 ${reposts.toLocaleString()} 次轉發`;
-                }, 1800);
+                }, 200);
             });
         };
 
@@ -1114,6 +1418,7 @@
         // 第二幕按鈕：觸發推播
         document.getElementById('btn-trigger-pop').onclick = function() {
             triggerNotif('🚨', 'Instagram Direct', '妳已被拉入「拆穿小美真面目」群組！點此查看', function() {
+                clearInterval(window.metricsTimer);
                 document.getElementById('stage-2').classList.add('hidden');
                 document.getElementById('stage-3').classList.remove('hidden');
 
@@ -1222,6 +1527,23 @@
             document.getElementById('view-s3').classList.add('hidden');
             document.getElementById('view-finish').classList.remove('hidden');
         };
+
+        // 手機框只在「前情提要／情境故事畫面」出現；其餘頁面為白底一般版面
+        const FRAME_VIEWS = ['view-page2', 'view-social', 'view-line'];
+        const deviceWrapper = document.querySelector('.device-wrapper');
+        function syncFrame() {
+            const on = FRAME_VIEWS.some(id => !document.getElementById(id).classList.contains('hidden'));
+            deviceWrapper.classList.toggle('phone-mode', on);
+        }
+        const viewObserver = new MutationObserver(records => {
+            syncFrame();
+            // 切換到新頁面時回到頁首（避免停在上一頁的捲動位置）
+            const shown = records.some(r => !r.target.classList.contains('hidden') && (r.oldValue || '').includes('hidden'));
+            if (shown) window.scrollTo(0, 0);
+        });
+        document.querySelectorAll('[id^="view-"]').forEach(el =>
+            viewObserver.observe(el, { attributes: true, attributeFilter: ['class'], attributeOldValue: true }));
+        syncFrame();
 
         // 最終提交按鈕：上傳到 Google Sheet（透過 Apps Script）
         document.getElementById('btn-submit-final').onclick = submitSurvey;
